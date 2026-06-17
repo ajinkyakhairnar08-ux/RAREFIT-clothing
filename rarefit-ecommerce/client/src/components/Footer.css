@@ -18,18 +18,24 @@
 }
 
 .footer-logo-link {
-  display: flex;
+  display: inline-flex;
   align-items: center;
+  background-color: #000;
+  padding: 8px 16px;
+  border-radius: 6px;
+  text-decoration: none;
 }
 
 .footer-brand .logo-rare {
   font-size: 1.8rem;
   font-weight: 800;
+  color: #fff;
 }
 
 .footer-brand .logo-fit {
   font-size: 1.8rem;
   font-weight: 500;
+  color: #aaa;
 }
 
 .footer-tagline {
