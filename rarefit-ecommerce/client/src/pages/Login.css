@@ -1,0 +1,97 @@
+.login-page {
+  min-height: calc(100vh - 80px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  background: url('/pants.png') center/cover fixed no-repeat;
+  position: relative;
+}
+
+.login-page::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.login-container {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 450px;
+  padding: 50px 40px;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.login-header p {
+  color: #aaa;
+  margin-bottom: 40px;
+}
+
+.login-methods {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.btn-google {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  background-color: #fff;
+  color: #333;
+  border: none;
+  padding: 15px;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+.btn-google:hover {
+  background-color: #f0f0f0;
+}
+
+.divider {
+  position: relative;
+  text-align: center;
+  margin: 10px 0;
+}
+
+.divider::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.divider span {
+  position: relative;
+  background-color: transparent;
+  padding: 0 15px;
+  color: #888;
+  font-size: 0.9rem;
+  /* Hack for transparent glass background */
+  background: #111; 
+  border-radius: 10px;
+}
+
+.login-form {
+  text-align: left;
+}
+
+.login-footer {
+  margin-top: 20px;
+  color: #aaa;
+}
+
+.login-footer a {
+  color: #fff;
+  text-decoration: underline;
+}

@@ -1,0 +1,8 @@
+<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <g transform="translate(0, 15)">
+    <path d="M50 10 C42 10, 42 22, 50 22 C58 22, 50 30, 50 30" stroke="black" stroke-width="6" stroke-linecap="round" fill="none" />
+    <path d="M50 30 C35 30, 20 40, 15 50 C10 55, 15 60, 25 60 L45 60 L45 50" stroke="black" stroke-width="6" stroke-linejoin="round" fill="none" />
+    <path d="M50 30 C65 30, 80 40, 85 50 C90 55, 85 60, 75 60 L55 60 L55 50" stroke="black" stroke-width="6" stroke-linejoin="round" fill="none" />
+    <path d="M50 35 L52 41 L58 43 L52 45 L50 51 L48 45 L42 43 L48 41 Z" fill="#888" />
+  </g>
+</svg>

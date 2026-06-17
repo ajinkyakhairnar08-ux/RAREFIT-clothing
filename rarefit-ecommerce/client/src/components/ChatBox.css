@@ -1,0 +1,168 @@
+.chatbox-container {
+  position: absolute;
+  bottom: 80px; /* above the fab */
+  right: 0;
+  width: 320px;
+  height: 450px;
+  background: rgba(10, 10, 10, 0.95);
+  border: 1px solid #333;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+  animation: slideUp 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  z-index: 1000;
+  backdrop-filter: blur(10px);
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.chatbox-header {
+  background: rgba(0,0,0,0.8);
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #333;
+}
+
+.chatbox-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.chatbox-close {
+  background: none;
+  border: none;
+  color: #aaa;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s;
+}
+
+.chatbox-close:hover {
+  color: #fff;
+}
+
+.chatbox-messages {
+  flex: 1;
+  padding: 15px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Custom scrollbar for messages */
+.chatbox-messages::-webkit-scrollbar {
+  width: 5px;
+}
+.chatbox-messages::-webkit-scrollbar-thumb {
+  background: #444;
+  border-radius: 5px;
+}
+
+.message-wrapper {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  max-width: 85%;
+}
+
+.message-wrapper.user {
+  align-self: flex-end;
+  justify-content: flex-end;
+}
+
+.message-wrapper.bot {
+  align-self: flex-start;
+}
+
+.avatar {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.bot-avatar {
+  background: #333;
+  color: #fff;
+}
+
+.message-bubble {
+  padding: 10px 14px;
+  border-radius: 18px;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.message-bubble.bot {
+  background: #222;
+  color: #ddd;
+  border-bottom-left-radius: 4px;
+}
+
+.message-bubble.user {
+  background: #fff;
+  color: #000;
+  border-bottom-right-radius: 4px;
+}
+
+.chatbox-faq-options {
+  padding: 15px;
+  border-top: 1px solid #333;
+  background: rgba(0,0,0,0.6);
+}
+
+.faq-prompt {
+  font-size: 0.8rem;
+  color: #888;
+  margin-bottom: 10px;
+}
+
+.faq-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  max-height: 100px;
+  overflow-y: auto;
+}
+
+/* Custom scrollbar for chips */
+.faq-chips::-webkit-scrollbar {
+  width: 4px;
+}
+.faq-chips::-webkit-scrollbar-thumb {
+  background: #444;
+  border-radius: 5px;
+}
+
+.faq-chip {
+  background: transparent;
+  border: 1px solid #444;
+  color: #ccc;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.faq-chip:hover {
+  background: #333;
+  color: #fff;
+  border-color: #555;
+}

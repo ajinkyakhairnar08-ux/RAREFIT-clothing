@@ -1,0 +1,75 @@
+.footer {
+  background-color: #f8fafc; /* very light gray, almost white */
+  padding: 60px 0 20px;
+  border-top: 1px solid rgba(26, 26, 26, 0.05);
+  margin-top: auto;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 40px;
+  margin-bottom: 40px;
+}
+
+.footer-brand {
+  max-width: 400px; /* Increased to fit the longer tagline */
+}
+
+.footer-logo-link {
+  display: flex;
+  align-items: center;
+}
+
+.footer-brand .logo-rare {
+  font-size: 1.8rem;
+  font-weight: 800;
+}
+
+.footer-brand .logo-fit {
+  font-size: 1.8rem;
+  font-weight: 500;
+}
+
+.footer-tagline {
+  margin-top: 16px;
+  color: var(--color-accent);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.footer-links {
+  display: flex;
+  gap: 60px;
+}
+
+.footer-column h4 {
+  margin-bottom: 20px;
+  font-size: 1rem;
+  color: var(--color-black);
+}
+
+.footer-column ul {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.footer-column a {
+  color: var(--color-accent);
+  font-size: 0.95rem;
+  transition: color 0.2s;
+}
+
+.footer-column a:hover {
+  color: var(--color-primary);
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 20px;
+  border-top: 1px solid rgba(26, 26, 26, 0.05);
+  color: var(--color-accent);
+  font-size: 0.85rem;
+}
