@@ -145,13 +145,13 @@ const Home = () => {
           </div>
 
           <div className="reveal-mask">
-            <h1 className="hero-title reveal-text fast-reveal">REDEFINE YOUR REALITY.</h1>
+            <h1 className="hero-title hero-reveal">REDEFINE YOUR REALITY.</h1>
           </div>
           <div className="reveal-mask">
-            <p className="hero-subtitle reveal-text">Premium essentials designed for the modern aesthetic.</p>
+            <p className="hero-subtitle hero-reveal">Premium essentials designed for the modern aesthetic.</p>
           </div>
           <div className="reveal-mask mt-4">
-            <div className="hero-actions reveal-text fast-reveal">
+            <div className="hero-actions hero-reveal">
               <Link to="/shop" className="btn-primary">Shop Collection</Link>
               <Link to="/shop?category=New" className="btn-outline">View Lookbook</Link>
             </div>
