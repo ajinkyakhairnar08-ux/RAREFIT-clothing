@@ -48,6 +48,7 @@
 .footer-links {
   display: flex;
   gap: 60px;
+  padding-right: 80px; /* Prevent overlap with floating action buttons */
 }
 
 .footer-column h4 {
@@ -69,7 +70,7 @@
 }
 
 .footer-column a:hover {
-  color: var(--color-primary);
+  color: var(--color-black, #000);
 }
 
 .footer-bottom {
