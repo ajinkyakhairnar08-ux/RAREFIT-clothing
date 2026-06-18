@@ -53,6 +53,7 @@ const Payment = () => {
           "Transaction ID (UTR)": transactionId,
           "Customer Name": shippingData.fullName,
           "Customer Email": shippingData.email,
+          "Customer Phone": shippingData.phone,
           "Shipping Address": `${shippingData.address}, ${shippingData.city}, ${shippingData.postalCode}`
         })
       });

@@ -6,12 +6,52 @@ import './Checkout.css';
 const Checkout = () => {
   const [isProcessing, setIsProcessing] = useState(false);
   const [paymentMethod, setPaymentMethod] = useState('upi');
+  const [address, setAddress] = useState('');
+  const [city, setCity] = useState('');
+  const [postalCode, setPostalCode] = useState('');
+  const [isLocating, setIsLocating] = useState(false);
   const navigate = useNavigate();
   
   // Get cart data to pass to payment
   const cartTotal = useCartStore(state => state.getCartTotal(state));
   // If free shipping, total is just cartTotal
   const finalTotal = cartTotal;
+
+  const handleGetLocation = () => {
+    if (!navigator.geolocation) {
+      alert('Geolocation is not supported by your browser');
+      return;
+    }
+
+    setIsLocating(true);
+    navigator.geolocation.getCurrentPosition(
+      async (position) => {
+        try {
+          const { latitude, longitude } = position.coords;
+          const response = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}&zoom=18&addressdetails=1`);
+          const data = await response.json();
+          
+          if (data && data.address) {
+            const road = data.address.road || data.address.suburb || data.address.neighbourhood || '';
+            const build = data.address.house_number ? data.address.house_number + ', ' : '';
+            setAddress(build + road);
+            setCity(data.address.city || data.address.town || data.address.village || data.address.county || '');
+            setPostalCode(data.address.postcode || '');
+          }
+        } catch (error) {
+          console.error("Error fetching location details:", error);
+          alert('Could not fetch address details automatically.');
+        } finally {
+          setIsLocating(false);
+        }
+      },
+      (error) => {
+        setIsLocating(false);
+        console.error("Geolocation error:", error);
+        alert('Unable to retrieve your location. Please allow location access in your browser settings.');
+      }
+    );
+  };
 
   const handleCheckout = (e) => {
     e.preventDefault();
@@ -62,14 +102,25 @@ const Checkout = () => {
               <input type="email" name="email" placeholder="Email Address" required className="form-input" />
             </div>
             <div className="form-group">
-              <input type="text" name="address" placeholder="Address" required className="form-input" />
+              <input type="tel" name="phone" placeholder="Phone Number" required className="form-input" />
+            </div>
+            
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem', marginTop: '1rem' }}>
+              <label style={{ color: '#000', fontWeight: 'bold' }}>Delivery Address</label>
+              <button type="button" onClick={handleGetLocation} disabled={isLocating} style={{ background: 'none', color: '#4f46e5', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '5px', fontSize: '0.9rem', padding: '0' }}>
+                📍 {isLocating ? 'Locating...' : 'Use My Current Location'}
+              </button>
+            </div>
+            
+            <div className="form-group">
+              <input type="text" name="address" placeholder="Address" required className="form-input" value={address} onChange={(e) => setAddress(e.target.value)} />
             </div>
             <div className="form-row">
               <div className="form-group">
-                <input type="text" name="city" placeholder="City" required className="form-input" />
+                <input type="text" name="city" placeholder="City" required className="form-input" value={city} onChange={(e) => setCity(e.target.value)} />
               </div>
               <div className="form-group">
-                <input type="text" name="postalCode" placeholder="Postal Code" required className="form-input" />
+                <input type="text" name="postalCode" placeholder="Postal Code" required className="form-input" value={postalCode} onChange={(e) => setPostalCode(e.target.value)} />
               </div>
             </div>
 
