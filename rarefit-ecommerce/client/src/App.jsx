@@ -19,6 +19,8 @@ import ReturnPolicy from './pages/ReturnPolicy';
 // New Pages
 import Contact from './pages/Contact';
 import Login from './pages/Login';
+import Blogs from './pages/Blogs';
+import BlogPost from './pages/BlogPost';
 
 function App() {
   return (
@@ -36,6 +38,8 @@ function App() {
             <Route path="/cart" element={<Cart />} />
             <Route path="/checkout" element={<Checkout />} />
             <Route path="/about" element={<AboutUs />} />
+            <Route path="/blogs" element={<Blogs />} />
+            <Route path="/blog/:id" element={<BlogPost />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/login" element={<Login />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />

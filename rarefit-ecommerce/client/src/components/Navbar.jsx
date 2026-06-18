@@ -28,6 +28,7 @@ const Navbar = () => {
           <div className="navbar-links">
             <Link to="/" className="nav-link" onClick={closeMenu}>Home</Link>
             <Link to="/shop" className="nav-link" onClick={closeMenu}>Shop</Link>
+            <Link to="/blogs" className="nav-link" onClick={closeMenu}>Blogs</Link>
             <Link to="/contact" className="nav-link" onClick={closeMenu}>Contact</Link>
           </div>
 
