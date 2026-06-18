@@ -29,6 +29,7 @@ const Navbar = () => {
             <Link to="/" className="nav-link" onClick={closeMenu}>Home</Link>
             <Link to="/shop" className="nav-link" onClick={closeMenu}>Shop</Link>
             <Link to="/blogs" className="nav-link" onClick={closeMenu}>Blogs</Link>
+            <Link to="/membership" className="nav-link" onClick={closeMenu}>Membership</Link>
             <Link to="/contact" className="nav-link" onClick={closeMenu}>Contact</Link>
           </div>
 

@@ -29,6 +29,7 @@ const Contact = () => {
           _template: "box",
           Name: data.name,
           Email: data.email,
+          Phone: data.phone,
           "Inquiry Type": data.inquiry_type,
           Message: data.message
         })
@@ -100,6 +101,11 @@ const Contact = () => {
               </div>
               
               <div className="form-group">
+                <label htmlFor="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone" required placeholder="+91 98765 43210" pattern="[+]?[0-9\s\-]{7,15}" disabled={isSubmitting} />
+              </div>
+              
+              <div className="form-group">
                 <label htmlFor="subject">Subject</label>
                 <select id="subject" name="inquiry_type" disabled={isSubmitting}>
                   <option value="Order Inquiry">Order Inquiry</option>
@@ -111,7 +117,7 @@ const Contact = () => {
               
               <div className="form-group">
                 <label htmlFor="message">Message</label>
-                <textarea id="message" name="message" rows="6" required placeholder="How can we help you?" disabled={isSubmitting}></textarea>
+                <textarea id="message" name="message" rows="6" required minLength={10} placeholder="How can we help you?" disabled={isSubmitting}></textarea>
               </div>
               
               <button type="submit" className="btn-primary" style={{width: '100%'}} disabled={isSubmitting}>

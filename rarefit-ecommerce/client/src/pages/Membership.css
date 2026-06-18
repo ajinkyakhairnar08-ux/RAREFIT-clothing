@@ -1,0 +1,265 @@
+/* ==============================
+   MEMBERSHIP PAGE
+============================== */
+
+.membership-page {
+  padding: 80px 5vw 100px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* --- Header --- */
+.membership-header {
+  text-align: center;
+  margin-bottom: 70px;
+}
+
+.membership-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 50px;
+  padding: 8px 20px;
+  font-size: 0.85rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #aaa;
+  margin-bottom: 24px;
+}
+
+.membership-title {
+  font-size: clamp(3rem, 7vw, 5.5rem);
+  font-weight: 800;
+  letter-spacing: -2px;
+  line-height: 1;
+  margin-bottom: 20px;
+  color: #fff;
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, #fff 0%, #888 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.membership-subtitle {
+  font-size: 1.15rem;
+  color: #999;
+  max-width: 520px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+/* --- Plans Grid --- */
+.plans-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  margin-bottom: 60px;
+  align-items: stretch;
+}
+
+/* --- Plan Card --- */
+.plan-card {
+  position: relative;
+  border-radius: 20px;
+  padding: 36px 28px;
+  cursor: pointer;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.plan-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.plan-card--active {
+  border-color: #fff !important;
+  box-shadow: 0 0 40px rgba(255, 255, 255, 0.06);
+}
+
+.plan-card--popular {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+/* Tag */
+.plan-tag {
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #fff;
+  color: #000;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 5px 18px;
+  border-radius: 50px;
+  white-space: nowrap;
+}
+
+/* Icon */
+.plan-icon {
+  color: #fff;
+  opacity: 0.7;
+}
+
+.plan-card--active .plan-icon {
+  opacity: 1;
+}
+
+/* Label */
+.plan-label {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #fff;
+  margin: 0;
+}
+
+/* Price */
+.plan-price {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  margin: 4px 0;
+}
+
+.price-currency {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #fff;
+}
+
+.price-amount {
+  font-size: 3rem;
+  font-weight: 800;
+  color: #fff;
+  line-height: 1;
+}
+
+.price-period {
+  font-size: 0.9rem;
+  color: #888;
+}
+
+/* Savings */
+.plan-savings {
+  font-size: 0.8rem;
+  color: #10b981;
+  letter-spacing: 0.5px;
+  margin: -8px 0 4px;
+}
+
+/* Perks */
+.plan-perks {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+}
+
+.plan-perks li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.95rem;
+  color: #ccc;
+}
+
+.perk-check {
+  color: #fff;
+  flex-shrink: 0;
+}
+
+/* Plan Button */
+.plan-btn {
+  margin-top: auto;
+  width: 100%;
+  padding: 13px;
+  font-size: 0.9rem;
+  letter-spacing: 1.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 8px;
+}
+
+/* --- Subscribe CTA --- */
+.membership-cta {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.membership-subscribe-btn {
+  padding: 18px 56px;
+  font-size: 1.05rem;
+  letter-spacing: 2px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+}
+
+.membership-terms {
+  font-size: 0.82rem;
+  color: #666;
+  letter-spacing: 0.5px;
+}
+
+/* --- Footer Action Buttons --- */
+.membership-footer-actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.membership-action-btn {
+  padding: 14px 36px;
+  font-size: 0.9rem;
+  letter-spacing: 1.5px;
+  border-radius: 8px;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.3s ease;
+}
+
+/* --- Responsive --- */
+@media (max-width: 900px) {
+  .plans-grid {
+    grid-template-columns: 1fr;
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media (max-width: 600px) {
+  .membership-page {
+    padding: 60px 5vw 80px;
+  }
+
+  .membership-footer-actions {
+    flex-direction: column;
+  }
+
+  .membership-action-btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  .membership-subscribe-btn {
+    width: 100%;
+    padding: 16px 24px;
+  }
+}

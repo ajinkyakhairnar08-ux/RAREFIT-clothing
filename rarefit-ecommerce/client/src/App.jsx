@@ -23,6 +23,7 @@ import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Blogs from './pages/Blogs';
 import BlogPost from './pages/BlogPost';
+import Membership from './pages/Membership';
 import ScrollToTop from './components/ScrollToTop';
 import ScrollProgress from './components/ScrollProgress';
 
@@ -54,6 +55,7 @@ function App() {
             <Route path="/terms-of-service" element={<TermsOfService />} />
             <Route path="/shipping-policy" element={<ShippingPolicy />} />
             <Route path="/return-policy" element={<ReturnPolicy />} />
+            <Route path="/membership" element={<Membership />} />
           </Routes>
         </main>
         
