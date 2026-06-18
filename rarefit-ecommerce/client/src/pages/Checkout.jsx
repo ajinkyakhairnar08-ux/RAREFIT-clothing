@@ -5,29 +5,44 @@ import './Checkout.css';
 
 const Checkout = () => {
   const [isProcessing, setIsProcessing] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false);
+  const [paymentMethod, setPaymentMethod] = useState('upi');
   const navigate = useNavigate();
-  const clearCart = useCartStore(state => state.clearCart);
   
+  // Get cart data to pass to payment
+  const getCartTotal = useCartStore(state => state.getCartTotal);
+  const cartTotal = getCartTotal();
+  // If free shipping, total is just cartTotal
+  const finalTotal = cartTotal;
+
   const handleCheckout = (e) => {
     e.preventDefault();
     setIsProcessing(true);
     
-    // Mock processing delay
+    const form = e.target;
+    const formData = new FormData(form);
+    const shippingData = Object.fromEntries(formData.entries());
+
+    // Redirect to the dedicated payment page after a short delay
     setTimeout(() => {
-      setIsProcessing(false);
-      setIsSuccess(true);
-      clearCart();
-    }, 2000);
+      navigate('/payment', { 
+        state: { 
+          shippingData, 
+          paymentMethod,
+          totalAmount: finalTotal
+        } 
+      });
+    }, 500);
   };
 
-  if (isSuccess) {
+  // If cart is empty, redirect back to shop
+  if (cartTotal === 0) {
     return (
-      <div className="checkout-page container success-view">
-        <div className="success-card">
-          <h2>Order Confirmed!</h2>
-          <p>Thank you for shopping at RareFit. Your order is being processed.</p>
-          <button className="btn-primary" onClick={() => navigate('/')}>Return to Home</button>
+      <div className="checkout-page container">
+        <div style={{ textAlign: 'center', padding: '4rem 0' }}>
+          <h2>Your cart is empty</h2>
+          <button className="btn-primary" style={{ marginTop: '2rem' }} onClick={() => navigate('/shop')}>
+            Go to Shop
+          </button>
         </div>
       </div>
     );
@@ -38,42 +53,63 @@ const Checkout = () => {
       <h1 className="section-title">Checkout</h1>
       
       <div className="checkout-layout">
-        <div className="checkout-form-container">
+        <div className="checkout-form-container glass">
           <form className="checkout-form" onSubmit={handleCheckout}>
             <h3>Shipping Information</h3>
             <div className="form-group">
-              <input type="text" placeholder="Full Name" required className="form-input" />
+              <input type="text" name="fullName" placeholder="Full Name" required className="form-input" />
             </div>
             <div className="form-group">
-              <input type="email" placeholder="Email Address" required className="form-input" />
+              <input type="email" name="email" placeholder="Email Address" required className="form-input" />
             </div>
             <div className="form-group">
-              <input type="text" placeholder="Address" required className="form-input" />
+              <input type="text" name="address" placeholder="Address" required className="form-input" />
             </div>
             <div className="form-row">
               <div className="form-group">
-                <input type="text" placeholder="City" required className="form-input" />
+                <input type="text" name="city" placeholder="City" required className="form-input" />
               </div>
               <div className="form-group">
-                <input type="text" placeholder="Postal Code" required className="form-input" />
+                <input type="text" name="postalCode" placeholder="Postal Code" required className="form-input" />
               </div>
             </div>
 
-            <h3 className="payment-heading">Payment Information</h3>
-            <div className="form-group">
-              <input type="text" placeholder="Card Number" required className="form-input" />
-            </div>
-            <div className="form-row">
-              <div className="form-group">
-                <input type="text" placeholder="MM/YY" required className="form-input" />
-              </div>
-              <div className="form-group">
-                <input type="text" placeholder="CVC" required className="form-input" />
-              </div>
+            <h3 className="payment-heading" style={{ marginTop: '2rem' }}>Payment Method</h3>
+            
+            <div className="payment-options" style={{ marginBottom: '2rem' }}>
+              <label className={`payment-option ${paymentMethod === 'upi' ? 'selected' : ''}`} style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '15px', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '4px', marginBottom: '10px', cursor: 'pointer', background: paymentMethod === 'upi' ? 'rgba(255,255,255,0.05)' : 'transparent' }}>
+                <input 
+                  type="radio" 
+                  name="paymentMethod" 
+                  value="upi" 
+                  checked={paymentMethod === 'upi'} 
+                  onChange={() => setPaymentMethod('upi')}
+                  style={{ cursor: 'pointer' }}
+                />
+                <div>
+                  <div style={{ fontWeight: '600' }}>Pay via UPI / QR Code</div>
+                  <div style={{ fontSize: '0.8rem', color: 'var(--color-text-secondary)' }}>Google Pay, PhonePe, Paytm</div>
+                </div>
+              </label>
+
+              <label className={`payment-option ${paymentMethod === 'cod' ? 'selected' : ''}`} style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '15px', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '4px', cursor: 'pointer', background: paymentMethod === 'cod' ? 'rgba(255,255,255,0.05)' : 'transparent' }}>
+                <input 
+                  type="radio" 
+                  name="paymentMethod" 
+                  value="cod" 
+                  checked={paymentMethod === 'cod'} 
+                  onChange={() => setPaymentMethod('cod')}
+                  style={{ cursor: 'pointer' }}
+                />
+                <div>
+                  <div style={{ fontWeight: '600' }}>Cash on Delivery</div>
+                  <div style={{ fontSize: '0.8rem', color: 'var(--color-text-secondary)' }}>Pay when your order arrives</div>
+                </div>
+              </label>
             </div>
             
-            <button type="submit" className="btn-primary place-order-btn" disabled={isProcessing}>
-              {isProcessing ? 'Processing...' : 'Place Order'}
+            <button type="submit" className="btn-primary place-order-btn" disabled={isProcessing} style={{ width: '100%', padding: '15px', fontSize: '1.1rem' }}>
+              {isProcessing ? 'Processing...' : 'Continue to Payment'}
             </button>
           </form>
         </div>
