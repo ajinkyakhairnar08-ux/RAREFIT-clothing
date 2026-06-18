@@ -29,30 +29,35 @@ const Contact = () => {
         </div>
 
         <div className="contact-form-container glass">
-          <form className="contact-form" onSubmit={(e) => e.preventDefault()}>
+          <form className="contact-form" action="https://formsubmit.co/ajinkyakhairnar007@gmail.com" method="POST">
+            {/* FormSubmit Configuration */}
+            <input type="hidden" name="_subject" value="New Lead from RareFit Contact Form!" />
+            <input type="hidden" name="_captcha" value="false" />
+            <input type="hidden" name="_template" value="table" />
+
             <div className="form-group">
               <label htmlFor="name">Name</label>
-              <input type="text" id="name" required placeholder="John Doe" />
+              <input type="text" id="name" name="name" required placeholder="John Doe" />
             </div>
             
             <div className="form-group">
               <label htmlFor="email">Email</label>
-              <input type="email" id="email" required placeholder="john@example.com" />
+              <input type="email" id="email" name="email" required placeholder="john@example.com" />
             </div>
             
             <div className="form-group">
               <label htmlFor="subject">Subject</label>
-              <select id="subject">
-                <option value="order">Order Inquiry</option>
-                <option value="return">Returns & Exchanges</option>
-                <option value="product">Product Information</option>
-                <option value="other">Other</option>
+              <select id="subject" name="inquiry_type">
+                <option value="Order Inquiry">Order Inquiry</option>
+                <option value="Returns & Exchanges">Returns & Exchanges</option>
+                <option value="Product Information">Product Information</option>
+                <option value="Other">Other</option>
               </select>
             </div>
             
             <div className="form-group">
               <label htmlFor="message">Message</label>
-              <textarea id="message" rows="6" required placeholder="How can we help you?"></textarea>
+              <textarea id="message" name="message" rows="6" required placeholder="How can we help you?"></textarea>
             </div>
             
             <button type="submit" className="btn-primary" style={{width: '100%'}}>Send Message</button>
