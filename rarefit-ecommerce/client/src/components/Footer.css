@@ -92,6 +92,10 @@
 }
 
 @media (max-width: 768px) {
+  .footer {
+    padding-bottom: 80px; /* Accounts for the 60px fixed bottom action bar */
+  }
+
   .footer-links {
     padding-right: 0;
     flex-direction: column;
