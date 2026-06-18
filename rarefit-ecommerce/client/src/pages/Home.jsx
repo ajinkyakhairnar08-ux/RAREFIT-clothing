@@ -5,6 +5,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import ProductCard from '../components/ProductCard';
 import SEO from '../components/SEO';
 import heroVideo from '../videos/hero-section-video.mp4';
+import ytVideo from '../videos/connect-with-us-youtube1.mp4';
 import './Home.css';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -303,6 +304,66 @@ const Home = () => {
             <div className="reveal-mask">
               <p className="reveal-text">Every thread is meticulously sourced to provide a heavy, draped fit that feels luxurious yet invincible on the streets.</p>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* SOCIAL MEDIA SECTION */}
+      <section className="home-section social-section" ref={addToRefs}>
+        <div className="container">
+          <div className="section-header">
+            <div className="reveal-mask">
+              <h2 className="section-title reveal-text fast-reveal">Connect With Us</h2>
+            </div>
+          </div>
+          
+          <div className="social-grid">
+            <a href="https://youtube.com" target="_blank" rel="noreferrer" className="social-card social-yt">
+              <video src={ytVideo} autoPlay loop muted playsInline className="social-video" />
+              <div className="social-overlay">
+                <div className="social-icon">
+                  <svg viewBox="0 0 24 24" fill="currentColor" width="48" height="48">
+                    <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/>
+                  </svg>
+                </div>
+                <div className="social-text">
+                  <span>WATCH LATEST CAMPAIGN</span>
+                  <h3>The Concrete Collection V2</h3>
+                </div>
+              </div>
+            </a>
+            
+            <a href="https://instagram.com" target="_blank" rel="noreferrer" className="social-card social-ig ig-1">
+              <img src="/social-ig-1.png" alt="Instagram Post 1" />
+              <div className="social-overlay">
+                <div className="social-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="32" height="32">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                  </svg>
+                </div>
+                <div className="social-text">
+                  <span>@rarefit_official</span>
+                </div>
+              </div>
+            </a>
+
+            <a href="https://instagram.com" target="_blank" rel="noreferrer" className="social-card social-ig ig-2">
+              <img src="/social-ig-2.png" alt="Instagram Post 2" />
+              <div className="social-overlay">
+                <div className="social-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="32" height="32">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                  </svg>
+                </div>
+                <div className="social-text">
+                  <span>@rarefit_official</span>
+                </div>
+              </div>
+            </a>
           </div>
         </div>
       </section>
