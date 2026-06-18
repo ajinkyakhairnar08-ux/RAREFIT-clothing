@@ -19,6 +19,7 @@ import ReturnPolicy from './pages/ReturnPolicy';
 // New Pages
 import Contact from './pages/Contact';
 import Login from './pages/Login';
+import Signup from './pages/Signup';
 import Blogs from './pages/Blogs';
 import BlogPost from './pages/BlogPost';
 import ScrollToTop from './components/ScrollToTop';
@@ -44,6 +45,7 @@ function App() {
             <Route path="/blog/:id" element={<BlogPost />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/terms-of-service" element={<TermsOfService />} />
             <Route path="/shipping-policy" element={<ShippingPolicy />} />

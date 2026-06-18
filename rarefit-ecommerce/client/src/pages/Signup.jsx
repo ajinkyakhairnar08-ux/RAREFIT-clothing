@@ -1,14 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './Login.css';
+import './Login.css'; // Reusing Login CSS since the layout is identical
 
-const Login = () => {
+const Signup = () => {
   return (
     <div className="login-page">
       <div className="login-container glass">
         <div className="login-header">
-          <h1 className="section-title" style={{marginBottom: '10px', fontSize: '2.5rem'}}>Welcome Back</h1>
-          <p>Sign in to access exclusive drops and manage orders.</p>
+          <h1 className="section-title" style={{marginBottom: '10px', fontSize: '2.5rem'}}>Create Account</h1>
+          <p>Join RareFit to access exclusive drops and manage orders.</p>
         </div>
 
         <div className="login-methods">
@@ -21,7 +21,7 @@ const Login = () => {
                 <path fill="#EA4335" d="M -14.754 43.989 C -12.984 43.989 -11.404 44.599 -10.154 45.789 L -6.734 42.369 C -8.804 40.429 -11.514 39.239 -14.754 39.239 C -19.444 39.239 -23.494 41.939 -25.464 45.859 L -21.484 48.949 C -20.534 46.099 -17.884 43.989 -14.754 43.989 Z"/>
               </g>
             </svg>
-            Sign in with Google
+            Sign up with Google
           </button>
           
           <div className="divider">
@@ -29,6 +29,11 @@ const Login = () => {
           </div>
 
           <form className="login-form" onSubmit={(e) => e.preventDefault()}>
+            <div className="form-group">
+              <label htmlFor="name">Full Name</label>
+              <input type="text" id="name" required placeholder="John Doe" />
+            </div>
+
             <div className="form-group">
               <label htmlFor="email">Email</label>
               <input type="email" id="email" required placeholder="name@example.com" />
@@ -39,11 +44,11 @@ const Login = () => {
               <input type="password" id="password" required placeholder="••••••••" />
             </div>
             
-            <button type="submit" className="btn-primary" style={{width: '100%', marginTop: '10px'}}>Sign In</button>
+            <button type="submit" className="btn-primary" style={{width: '100%', marginTop: '10px'}}>Sign Up</button>
           </form>
           
           <div className="login-footer">
-            <p>Don't have an account? <Link to="/signup">Create one</Link></p>
+            <p>Already have an account? <Link to="/login">Sign in</Link></p>
           </div>
         </div>
       </div>
@@ -51,4 +56,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Signup;
