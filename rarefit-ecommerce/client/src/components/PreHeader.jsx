@@ -8,11 +8,15 @@ const PreHeader = () => {
         <div className="marquee-content">
           <span>RAREFIT PREMIUM - FREE SHIPPING ON ORDERS OVER ₹2000</span>
           <span className="dot">•</span>
+          <span>PROUDLY MADE IN INDIA 🇮🇳</span>
+          <span className="dot">•</span>
           <span>NEW COLLECTION LIVE NOW</span>
           <span className="dot">•</span>
           <span>10% OFF YOUR FIRST ORDER WITH CODE: RARE10</span>
           <span className="dot">•</span>
           <span>RAREFIT PREMIUM - FREE SHIPPING ON ORDERS OVER ₹2000</span>
+          <span className="dot">•</span>
+          <span>PROUDLY MADE IN INDIA 🇮🇳</span>
           <span className="dot">•</span>
           <span>NEW COLLECTION LIVE NOW</span>
           <span className="dot">•</span>
