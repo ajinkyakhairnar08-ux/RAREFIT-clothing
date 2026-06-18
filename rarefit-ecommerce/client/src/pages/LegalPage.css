@@ -10,17 +10,17 @@
   font-weight: 800;
   margin-bottom: 40px;
   text-align: center;
-  color: var(--color-black);
+  color: #ffffff;
 }
 
 .legal-content {
   font-size: 1.05rem;
   line-height: 1.8;
-  color: #374151; /* slightly lighter than black for readability */
+  color: #cccccc;
 }
 
 .legal-content h2, .legal-content h3 {
-  color: var(--color-black);
+  color: #ffffff;
   margin-top: 40px;
   margin-bottom: 16px;
   font-size: 1.5rem;
@@ -42,12 +42,12 @@
 }
 
 .legal-content a {
-  color: var(--color-primary);
+  color: #ffffff;
   text-decoration: underline;
-  text-decoration-color: transparent;
+  text-decoration-color: rgba(255, 255, 255, 0.5);
   transition: text-decoration-color 0.2s;
 }
 
 .legal-content a:hover {
-  text-decoration-color: var(--color-primary);
+  text-decoration-color: #ffffff;
 }
