@@ -30,6 +30,16 @@
   padding: 0;
 }
 
+::selection {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+::-moz-selection {
+  background-color: #ffffff;
+  color: #000000;
+}
+
 body {
   margin: 0;
   min-width: 320px;

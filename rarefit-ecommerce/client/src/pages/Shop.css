@@ -138,5 +138,36 @@
   .shop-sidebar {
     flex-direction: column;
     gap: 20px;
+    margin-bottom: 20px;
+  }
+  .category-list {
+    flex-direction: row;
+    overflow-x: auto;
+    padding-bottom: 12px;
+    gap: 15px;
+    -webkit-overflow-scrolling: touch;
+  }
+  .category-list::-webkit-scrollbar {
+    height: 4px;
+  }
+  .category-list::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 4px;
+  }
+  .category-list::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+  }
+  .category-btn {
+    white-space: nowrap;
+    padding: 8px 16px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    font-size: 0.9rem;
+  }
+  .category-btn.active {
+    background: #fff;
+    color: #000;
+    text-decoration: none;
   }
 }

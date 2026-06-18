@@ -135,6 +135,16 @@
   height: fit-content;
 }
 
+.cart-summary ::selection {
+  background-color: #000000;
+  color: #ffffff;
+}
+
+.cart-summary ::-moz-selection {
+  background-color: #000000;
+  color: #ffffff;
+}
+
 .cart-summary h3 {
   font-size: 1.2rem;
   margin-bottom: 24px;

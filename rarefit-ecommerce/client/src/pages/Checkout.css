@@ -16,6 +16,16 @@
   border-radius: 8px;
 }
 
+.checkout-form-container ::selection {
+  background-color: #000000;
+  color: #ffffff;
+}
+
+.checkout-form-container ::-moz-selection {
+  background-color: #000000;
+  color: #ffffff;
+}
+
 .checkout-form h3 {
   font-size: 1.2rem;
   margin-bottom: 24px;
@@ -74,6 +84,16 @@
   padding: 60px 40px;
   border-radius: 8px;
   max-width: 500px;
+}
+
+.success-card ::selection {
+  background-color: #000000;
+  color: #ffffff;
+}
+
+.success-card ::-moz-selection {
+  background-color: #000000;
+  color: #ffffff;
 }
 
 .success-card h2 {

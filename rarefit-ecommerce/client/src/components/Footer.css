@@ -5,6 +5,16 @@
   margin-top: auto;
 }
 
+.footer ::selection {
+  background-color: #000000;
+  color: #ffffff;
+}
+
+.footer ::-moz-selection {
+  background-color: #000000;
+  color: #ffffff;
+}
+
 .footer-container {
   display: flex;
   justify-content: space-between;

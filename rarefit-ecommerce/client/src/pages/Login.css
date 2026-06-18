@@ -51,6 +51,16 @@
   transition: background-color 0.3s;
 }
 
+.btn-google ::selection {
+  background-color: #000000;
+  color: #ffffff;
+}
+
+.btn-google ::-moz-selection {
+  background-color: #000000;
+  color: #ffffff;
+}
+
 .btn-google:hover {
   background-color: #f0f0f0;
 }
