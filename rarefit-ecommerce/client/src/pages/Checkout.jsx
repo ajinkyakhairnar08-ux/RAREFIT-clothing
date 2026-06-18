@@ -9,8 +9,7 @@ const Checkout = () => {
   const navigate = useNavigate();
   
   // Get cart data to pass to payment
-  const getCartTotal = useCartStore(state => state.getCartTotal);
-  const cartTotal = getCartTotal();
+  const cartTotal = useCartStore(state => state.getCartTotal(state));
   // If free shipping, total is just cartTotal
   const finalTotal = cartTotal;
 
