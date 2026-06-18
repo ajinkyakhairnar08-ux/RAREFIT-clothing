@@ -237,7 +237,7 @@ const Home = () => {
                   alt={`Lookbook Item ${index}`}
                   className={`lb-card ${isJustThrown ? 'lb-card-throw' : ''}`}
                   style={!isJustThrown ? {
-                    transform: `translateZ(${-offset * 70}px) translateY(${offset * 30}px) translateX(${offset * 30}px)`,
+                    '--offset': offset,
                     zIndex: lookbookCards.length - offset,
                     opacity: isVisible ? 1 - (offset * 0.2) : 0,
                     pointerEvents: offset === 0 ? 'auto' : 'none'
