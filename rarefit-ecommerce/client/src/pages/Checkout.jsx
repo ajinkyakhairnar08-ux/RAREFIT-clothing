@@ -149,17 +149,19 @@ const Checkout = () => {
                 </div>
               </label>
 
-              <label className={`payment-option ${paymentMethod === 'cod' ? 'selected' : ''}`} style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '15px', border: '1px solid rgba(0,0,0,0.2)', borderRadius: '4px', cursor: 'pointer', background: paymentMethod === 'cod' ? 'rgba(0,0,0,0.05)' : 'transparent' }}>
+              <label className={`payment-option`} style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '15px', border: '1px solid rgba(0,0,0,0.2)', borderRadius: '4px', cursor: 'not-allowed', background: 'transparent', opacity: 0.6 }}>
                 <input 
                   type="radio" 
                   name="paymentMethod" 
                   value="cod" 
-                  checked={paymentMethod === 'cod'} 
-                  onChange={() => setPaymentMethod('cod')}
-                  style={{ cursor: 'pointer' }}
+                  disabled
+                  style={{ cursor: 'not-allowed' }}
                 />
-                <div>
-                  <div style={{ fontWeight: '600', color: '#000000' }}>Cash on Delivery</div>
+                <div style={{ flex: 1 }}>
+                  <div style={{ fontWeight: '600', color: '#000000', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <span>Cash on Delivery</span>
+                    <span style={{ fontSize: '0.7rem', background: '#f87171', color: 'white', padding: '2px 6px', borderRadius: '4px' }}>Currently Unavailable</span>
+                  </div>
                   <div style={{ fontSize: '0.8rem', color: '#555555' }}>Pay when your order arrives</div>
                 </div>
               </label>
