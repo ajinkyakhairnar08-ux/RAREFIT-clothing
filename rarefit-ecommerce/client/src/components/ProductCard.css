@@ -52,7 +52,7 @@
 
 .product-price {
   font-size: 1rem;
-  color: var(--color-text-secondary);
+  color: #ffffff;
   font-weight: 400;
   font-family: 'Inter', sans-serif;
 }
