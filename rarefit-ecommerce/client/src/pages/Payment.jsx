@@ -112,9 +112,9 @@ const Payment = () => {
       <h1 className="section-title">Complete Payment</h1>
 
       <div className="checkout-layout">
-        <div className="checkout-form-container glass" style={{ textAlign: 'center', padding: '2rem' }}>
-          <h3 style={{ marginBottom: '1rem' }}>Scan to Pay with any UPI App</h3>
-          <p style={{ color: 'var(--color-text-secondary)', marginBottom: '2rem' }}>
+        <div className="checkout-form-container glass" style={{ textAlign: 'center', padding: '2rem', color: '#000' }}>
+          <h3 style={{ marginBottom: '1rem', color: '#000' }}>Scan to Pay with any UPI App</h3>
+          <p style={{ color: '#444', marginBottom: '2rem' }}>
             Open Google Pay, PhonePe, or Paytm and scan the QR code below to pay securely.
           </p>
 
@@ -122,14 +122,14 @@ const Payment = () => {
             <QRCodeSVG value={upiUrl} size={200} />
           </div>
 
-          <div style={{ fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '2rem' }}>
+          <div style={{ fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '2rem', color: '#000' }}>
             Amount to Pay: ₹{totalAmount.toFixed(2)}
           </div>
 
           <form onSubmit={handleUpiSubmit} style={{ maxWidth: '400px', margin: '0 auto', textAlign: 'left' }}>
             <div className="form-group">
-              <label>Enter 12-digit UTR / Reference Number</label>
-              <p style={{ fontSize: '0.8rem', color: 'var(--color-text-secondary)', marginBottom: '0.5rem' }}>
+              <label style={{ color: '#000', fontWeight: '600' }}>Enter 12-digit UTR / Reference Number</label>
+              <p style={{ fontSize: '0.8rem', color: '#555', marginBottom: '0.5rem' }}>
                 After paying, enter the 12-digit transaction ID found in your UPI app.
               </p>
               <input

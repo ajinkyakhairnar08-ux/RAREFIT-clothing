@@ -14,14 +14,6 @@
   background-color: #f8fafc;
   padding: 40px;
   border-radius: 8px;
-  color: #000000;
-}
-
-.checkout-form-container h3, 
-.checkout-form-container p, 
-.checkout-form-container label, 
-.checkout-form-container div {
-  color: #000000 !important;
 }
 
 .checkout-form-container ::selection {
@@ -107,7 +99,8 @@
 
 .success-card h2 {
   font-size: 2rem;
-  color: #10b981; /* green success */
+  color: #10b981;
+  /* green success */
   margin-bottom: 16px;
 }
 
@@ -122,7 +115,7 @@
     flex-direction: column;
     gap: 0;
   }
-  
+
   .checkout-form-container {
     padding: 20px;
   }
