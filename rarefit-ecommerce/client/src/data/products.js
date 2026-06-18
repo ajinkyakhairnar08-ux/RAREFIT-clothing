@@ -25,7 +25,7 @@ const generateProducts = (count) => {
     productsList.push({
       id: i,
       name: `${adjective} ${subcategory} ${categoryObj.name}`,
-      price: generatePrice(500, 10000),
+      price: i === 1 ? 1 : generatePrice(500, 10000),
       category: categoryObj.name,
       subcategory: subcategory,
       image: categoryObj.image, // Removed hardcoded localhost URL for robust deployment
