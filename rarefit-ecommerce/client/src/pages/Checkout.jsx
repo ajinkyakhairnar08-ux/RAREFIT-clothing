@@ -76,7 +76,7 @@ const Checkout = () => {
             <h3 className="payment-heading" style={{ marginTop: '2rem' }}>Payment Method</h3>
             
             <div className="payment-options" style={{ marginBottom: '2rem' }}>
-              <label className={`payment-option ${paymentMethod === 'upi' ? 'selected' : ''}`} style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '15px', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '4px', marginBottom: '10px', cursor: 'pointer', background: paymentMethod === 'upi' ? 'rgba(255,255,255,0.05)' : 'transparent' }}>
+              <label className={`payment-option ${paymentMethod === 'upi' ? 'selected' : ''}`} style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '15px', border: '1px solid rgba(0,0,0,0.2)', borderRadius: '4px', marginBottom: '10px', cursor: 'pointer', background: paymentMethod === 'upi' ? 'rgba(0,0,0,0.05)' : 'transparent' }}>
                 <input 
                   type="radio" 
                   name="paymentMethod" 
@@ -86,12 +86,12 @@ const Checkout = () => {
                   style={{ cursor: 'pointer' }}
                 />
                 <div>
-                  <div style={{ fontWeight: '600' }}>Pay via UPI / QR Code</div>
-                  <div style={{ fontSize: '0.8rem', color: 'var(--color-text-secondary)' }}>Google Pay, PhonePe, Paytm</div>
+                  <div style={{ fontWeight: '600', color: '#000000' }}>Pay via UPI / QR Code</div>
+                  <div style={{ fontSize: '0.8rem', color: '#555555' }}>Google Pay, PhonePe, Paytm</div>
                 </div>
               </label>
 
-              <label className={`payment-option ${paymentMethod === 'cod' ? 'selected' : ''}`} style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '15px', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '4px', cursor: 'pointer', background: paymentMethod === 'cod' ? 'rgba(255,255,255,0.05)' : 'transparent' }}>
+              <label className={`payment-option ${paymentMethod === 'cod' ? 'selected' : ''}`} style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '15px', border: '1px solid rgba(0,0,0,0.2)', borderRadius: '4px', cursor: 'pointer', background: paymentMethod === 'cod' ? 'rgba(0,0,0,0.05)' : 'transparent' }}>
                 <input 
                   type="radio" 
                   name="paymentMethod" 
@@ -101,8 +101,8 @@ const Checkout = () => {
                   style={{ cursor: 'pointer' }}
                 />
                 <div>
-                  <div style={{ fontWeight: '600' }}>Cash on Delivery</div>
-                  <div style={{ fontSize: '0.8rem', color: 'var(--color-text-secondary)' }}>Pay when your order arrives</div>
+                  <div style={{ fontWeight: '600', color: '#000000' }}>Cash on Delivery</div>
+                  <div style={{ fontSize: '0.8rem', color: '#555555' }}>Pay when your order arrives</div>
                 </div>
               </label>
             </div>
