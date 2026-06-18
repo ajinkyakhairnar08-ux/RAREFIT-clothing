@@ -112,24 +112,24 @@ const Payment = () => {
       <h1 className="section-title">Complete Payment</h1>
       
       <div className="checkout-layout">
-        <div className="checkout-form-container glass" style={{ textAlign: 'center', padding: '2rem' }}>
-          <h3 style={{ marginBottom: '1rem' }}>Scan to Pay with any UPI App</h3>
-          <p style={{ color: 'var(--color-text-secondary)', marginBottom: '2rem' }}>
+        <div className="checkout-form-container glass" style={{ textAlign: 'center', padding: '2rem', color: '#000000' }}>
+          <h3 style={{ marginBottom: '1rem', color: '#000000' }}>Scan to Pay with any UPI App</h3>
+          <p style={{ color: '#444444', marginBottom: '2rem' }}>
             Open Google Pay, PhonePe, or Paytm and scan the QR code below to pay securely.
           </p>
           
-          <div style={{ background: 'white', padding: '1rem', display: 'inline-block', borderRadius: '8px', marginBottom: '1.5rem' }}>
+          <div style={{ background: 'white', padding: '1rem', display: 'inline-block', borderRadius: '8px', marginBottom: '1.5rem', boxShadow: '0 4px 6px rgba(0,0,0,0.1)' }}>
             <QRCodeSVG value={upiUrl} size={200} />
           </div>
 
-          <div style={{ fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '2rem' }}>
+          <div style={{ fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '2rem', color: '#000000' }}>
             Amount to Pay: ₹{totalAmount.toFixed(2)}
           </div>
 
           <form onSubmit={handleUpiSubmit} style={{ maxWidth: '400px', margin: '0 auto', textAlign: 'left' }}>
             <div className="form-group">
-              <label>Enter 12-digit UTR / Reference Number</label>
-              <p style={{ fontSize: '0.8rem', color: 'var(--color-text-secondary)', marginBottom: '0.5rem' }}>
+              <label style={{ color: '#000000', fontWeight: '600' }}>Enter 12-digit UTR / Reference Number</label>
+              <p style={{ fontSize: '0.8rem', color: '#666666', marginBottom: '0.5rem', marginTop: '0.2rem' }}>
                 After paying, enter the 12-digit transaction ID found in your UPI app.
               </p>
               <input 
