@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import useCartStore from '../store/useCartStore';
 import SEO from '../components/SEO';
+import { products as localProducts } from '../data/products';
 import './ProductDetail.css';
 
 const ProductDetail = () => {
@@ -12,19 +13,13 @@ const ProductDetail = () => {
   const addToCart = useCartStore(state => state.addToCart);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/api/products/${id}`)
-      .then(res => {
-        if (!res.ok) throw new Error('Product not found');
-        return res.json();
-      })
-      .then(data => {
-        setProduct(data);
-        setLoading(false);
-      })
-      .catch(err => {
-        console.error(err);
-        setLoading(false);
-      });
+    const foundProduct = localProducts.find(p => p.id === parseInt(id));
+    if (foundProduct) {
+      setProduct(foundProduct);
+    } else {
+      console.error('Product not found');
+    }
+    setLoading(false);
   }, [id]);
 
   const handleAddToCart = () => {

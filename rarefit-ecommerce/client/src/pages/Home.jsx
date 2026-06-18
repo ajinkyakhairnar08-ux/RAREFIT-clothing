@@ -6,6 +6,7 @@ import ProductCard from '../components/ProductCard';
 import SEO from '../components/SEO';
 import heroVideo from '../videos/hero-section-video.mp4';
 import ytVideo from '../videos/connect-with-us-youtube1.mp4';
+import { products } from '../data/products';
 import './Home.css';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -16,14 +17,8 @@ const Home = () => {
   const sectionsRef = useRef([]);
 
   useEffect(() => {
-    // Fetch products
-    fetch('http://localhost:5000/api/products')
-      .then(res => res.json())
-      .then(data => {
-        // Just take the first 4 for featured
-        setFeaturedProducts(data.slice(0, 4));
-      })
-      .catch(err => console.error('Error fetching products:', err));
+    // Use static products data for frontend deployment
+    setFeaturedProducts(products.slice(0, 4));
   }, []);
 
   useEffect(() => {

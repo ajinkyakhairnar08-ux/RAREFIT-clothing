@@ -3,6 +3,7 @@ import { useSearchParams } from 'react-router-dom';
 import { Search } from 'lucide-react';
 import ProductCard from '../components/ProductCard';
 import SEO from '../components/SEO';
+import { products as localProducts } from '../data/products';
 import './Shop.css';
 
 const Shop = () => {
@@ -15,13 +16,8 @@ const Shop = () => {
   const categoryFilter = searchParams.get('category');
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/products')
-      .then(res => res.json())
-      .then(data => {
-        setAllProducts(data);
-        setProducts(data);
-      })
-      .catch(err => console.error('Error fetching products:', err));
+    setAllProducts(localProducts);
+    setProducts(localProducts);
   }, []);
 
   useEffect(() => {
