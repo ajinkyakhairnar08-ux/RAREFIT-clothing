@@ -23,10 +23,12 @@ import Signup from './pages/Signup';
 import Blogs from './pages/Blogs';
 import BlogPost from './pages/BlogPost';
 import ScrollToTop from './components/ScrollToTop';
+import ScrollProgress from './components/ScrollProgress';
 
 function App() {
   return (
     <Router>
+      <ScrollProgress />
       <ScrollToTop />
       <div className="page-wrapper">
         <PreHeader />
