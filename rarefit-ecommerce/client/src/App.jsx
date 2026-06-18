@@ -21,10 +21,12 @@ import Contact from './pages/Contact';
 import Login from './pages/Login';
 import Blogs from './pages/Blogs';
 import BlogPost from './pages/BlogPost';
+import ScrollToTop from './components/ScrollToTop';
 
 function App() {
   return (
     <Router>
+      <ScrollToTop />
       <div className="page-wrapper">
         <PreHeader />
         <Navbar />
