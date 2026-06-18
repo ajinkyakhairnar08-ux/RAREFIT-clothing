@@ -32,11 +32,17 @@ const Checkout = () => {
           const data = await response.json();
           
           if (data && data.address) {
-            const road = data.address.road || data.address.suburb || data.address.neighbourhood || '';
-            const build = data.address.house_number ? data.address.house_number + ', ' : '';
-            setAddress(build + road);
-            setCity(data.address.city || data.address.town || data.address.village || data.address.county || '');
-            setPostalCode(data.address.postcode || '');
+            const addr = data.address;
+            const exactLocation = addr.building || addr.amenity || addr.shop || addr.office || addr.house_name || '';
+            const houseNum = addr.house_number ? addr.house_number + ', ' : '';
+            const street = addr.road || addr.pedestrian || '';
+            const area = addr.suburb || addr.neighbourhood || addr.residential || '';
+            
+            const fullAddressLine = [exactLocation, houseNum + street, area].filter(Boolean).join(', ');
+
+            setAddress(fullAddressLine || data.display_name.split(',')[0]);
+            setCity(addr.city || addr.town || addr.village || addr.county || '');
+            setPostalCode(addr.postcode || '');
           }
         } catch (error) {
           console.error("Error fetching location details:", error);
@@ -49,7 +55,8 @@ const Checkout = () => {
         setIsLocating(false);
         console.error("Geolocation error:", error);
         alert('Unable to retrieve your location. Please allow location access in your browser settings.');
-      }
+      },
+      { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
     );
   };
 
