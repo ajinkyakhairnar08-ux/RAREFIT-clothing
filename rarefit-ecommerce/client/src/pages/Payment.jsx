@@ -145,7 +145,7 @@ const Payment = () => {
             </div>
             <button
               type="submit"
-              className="btn-primary"
+              className="btn-primary place-order-btn"
               style={{ width: '100%', padding: '15px' }}
               disabled={isVerifying}
             >
