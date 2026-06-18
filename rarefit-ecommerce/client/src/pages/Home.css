@@ -589,9 +589,10 @@
 }
 
 .glass-card h3 {
-  font-size: 2.5rem;
+  font-size: clamp(1.1rem, 5vw, 2.5rem);
   margin-bottom: 1rem;
-  letter-spacing: 2px;
+  letter-spacing: 1px;
+  white-space: nowrap;
 }
 
 .glass-card p {
@@ -839,6 +840,10 @@
 
   .split-content {
     padding: 2rem;
+  }
+
+  .glass-card {
+    padding: 2rem 1.5rem;
   }
 
   .gallery-item {
