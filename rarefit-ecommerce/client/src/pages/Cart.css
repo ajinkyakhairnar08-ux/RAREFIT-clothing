@@ -166,4 +166,14 @@
   .cart-layout {
     flex-direction: column;
   }
+  .cart-item {
+    gap: 16px;
+  }
+  .cart-item-image-container {
+    width: 80px;
+    height: 100px;
+  }
+  .cart-summary {
+    padding: 20px;
+  }
 }

@@ -367,8 +367,22 @@
 }
 
 @media (max-width: 768px) {
+  .home-section {
+    min-height: calc(100vh - 130px); /* Account for 70px top nav + 60px bottom contact bar */
+  }
+
   .hero-title {
     font-size: 12vw;
+  }
+
+  .hero-main-logo {
+    top: -110px; /* Moved up to prevent overlap with the smaller text on mobile */
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
   }
 
   .newsletter-form {
@@ -378,6 +392,22 @@
 
   .newsletter-form input {
     width: 100%;
+  }
+
+  .glass-card {
+    padding: 2rem 1.5rem;
+  }
+
+  .glass-card h3 {
+    font-size: 1.8rem;
+  }
+
+  .story-wrapper {
+    padding: 40px 20px;
+  }
+
+  .story-text {
+    font-size: 1rem;
   }
 }
 
@@ -631,5 +661,14 @@
 
   .gallery-item {
     min-width: 280px;
+  }
+
+  .lb-card {
+    width: 260px;
+    height: 360px;
+  }
+
+  .product-grid {
+    gap: 15px;
   }
 }

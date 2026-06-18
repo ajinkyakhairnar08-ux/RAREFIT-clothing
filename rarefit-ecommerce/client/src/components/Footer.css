@@ -80,3 +80,16 @@
   color: var(--color-accent);
   font-size: 0.85rem;
 }
+
+@media (max-width: 768px) {
+  .footer-links {
+    padding-right: 0;
+    flex-direction: column;
+    gap: 30px;
+  }
+  
+  .footer-container {
+    flex-direction: column;
+    gap: 30px;
+  }
+}

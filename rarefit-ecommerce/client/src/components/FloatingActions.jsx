@@ -29,28 +29,33 @@ const FloatingActions = () => {
   };
 
   return (
-    <div className="floating-actions">
+    <div className="floating-actions-wrapper">
       <ChatBox isOpen={isChatOpen} onClose={() => setIsChatOpen(false)} />
       
-      <div className="fab-group">
-        <a href="https://wa.me/918668834916" target="_blank" rel="noreferrer" className="fab fab-whatsapp" title="WhatsApp">
-          <MessageCircle size={24} />
+      <div className="contact-bar">
+        <a href="tel:+918668834916" className="contact-btn btn-call" title="Call Us">
+          <PhoneCall size={20} />
+          <span className="contact-text">CALL US</span>
         </a>
-        <a href="tel:+918668834916" className="fab fab-call" title="Call Us">
-          <PhoneCall size={24} />
+        <a href="https://wa.me/918668834916" target="_blank" rel="noreferrer" className="contact-btn btn-wa" title="WhatsApp">
+          <MessageCircle size={20} />
+          <span className="contact-text">WHATSAPP</span>
         </a>
+      </div>
+
+      <div className="floating-actions">
         <button className="fab fab-chat" title="Live Chat" onClick={toggleChat}>
           <MessageSquare size={24} />
         </button>
-      </div>
 
-      <button 
-        className={`fab fab-goup ${showGoUp ? 'visible' : 'hidden'}`} 
-        onClick={scrollToTop}
-        title="Go to Top"
-      >
-        <ArrowUp size={24} />
-      </button>
+        <button 
+          className={`fab fab-goup ${showGoUp ? 'visible' : 'hidden'}`} 
+          onClick={scrollToTop}
+          title="Go to Top"
+        >
+          <ArrowUp size={24} />
+        </button>
+      </div>
     </div>
   );
 };
