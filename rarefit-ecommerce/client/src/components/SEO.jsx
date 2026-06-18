@@ -2,7 +2,7 @@ import React from 'react';
 import { Helmet } from 'react-helmet-async';
 
 const SEO = ({ title, description, name, type, image, url }) => {
-  const siteUrl = 'https://rarefit-ecommerce.com'; // Placeholder, should be updated with actual domain later
+  const siteUrl = 'https://rarefit-clothing.vercel.app'; // Placeholder, should be updated with actual domain later
   const defaultImage = `${siteUrl}/favicon.svg`; // Fallback image
 
   return (
