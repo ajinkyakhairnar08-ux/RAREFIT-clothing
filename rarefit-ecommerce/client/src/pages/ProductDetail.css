@@ -60,7 +60,7 @@
 }
 
 .product-description p {
-  color: #4b5563;
+  color: #ffffff;
   line-height: 1.6;
 }
 
@@ -76,7 +76,7 @@
 
 .product-meta {
   font-size: 0.9rem;
-  color: #6b7280;
+  color: #ffffff;
   display: flex;
   flex-direction: column;
   gap: 8px;
