@@ -26,7 +26,7 @@ const Contact = () => {
         },
         body: JSON.stringify({
           _subject: "New Lead from RareFit Contact Form!",
-          _template: "table",
+          _template: "box",
           Name: data.name,
           Email: data.email,
           "Inquiry Type": data.inquiry_type,
