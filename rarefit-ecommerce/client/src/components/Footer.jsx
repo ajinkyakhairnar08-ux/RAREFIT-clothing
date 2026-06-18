@@ -44,7 +44,7 @@ const Footer = () => {
       </div>
       <div className="footer-bottom">
         <p>&copy; {new Date().getFullYear()} RareFit. All rights reserved.</p>
-        <p style={{ marginTop: '10px', fontSize: '0.9rem', color: '#fff', fontWeight: '500', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px' }}>
+        <p style={{ marginTop: '10px', fontSize: '0.9rem', color: '#000', fontWeight: '500', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px' }}>
           Proudly Made in India <img src="https://upload.wikimedia.org/wikipedia/en/4/41/Flag_of_India.svg" alt="India Flag" style={{ width: '18px', height: '12px', borderRadius: '2px' }} />
         </p>
       </div>
