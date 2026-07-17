@@ -55,12 +55,18 @@ export default async function handler(req, res) {
   const from = process.env.RESEND_FROM_EMAIL || 'onboarding@resend.dev'
 
   try {
-    await resend.emails.send({
+    const { error } = await resend.emails.send({
       from,
       to: normalizedEmail,
       subject: 'Your RareFit verification code',
       html: `<p>Your verification code is:</p><h2 style="letter-spacing:4px">${code}</h2><p>This code expires in 10 minutes. If you didn't request this, you can ignore this email.</p>`,
     })
+
+    if (error) {
+      console.error('[send-otp] Resend rejected the send:', error)
+      res.status(500).json({ error: 'Could not send the verification email. Please try again.' })
+      return
+    }
   } catch (err) {
     console.error('[send-otp] Resend error:', err)
     res.status(500).json({ error: 'Could not send the verification email. Please try again.' })
