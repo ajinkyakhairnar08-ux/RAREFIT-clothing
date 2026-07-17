@@ -1,42 +1,22 @@
 :root {
-  --text: #4b4b57;
-  --text-h: #17171f;
-  --bg: #f6f5f9;
-  --surface: #ffffff;
-  --border: #e5e4ec;
-  --accent: #7c3aed;
-  --accent-h: #6d28d9;
-  --accent-bg: rgba(124, 58, 237, 0.1);
-  --danger: #dc2626;
-  --danger-bg: rgba(220, 38, 38, 0.08);
-  --success: #16a34a;
-  --success-bg: rgba(22, 163, 74, 0.1);
-  --warning: #d97706;
-  --warning-bg: rgba(217, 119, 6, 0.1);
-  --shadow: rgba(23, 23, 31, 0.06) 0 1px 2px, rgba(23, 23, 31, 0.06) 0 8px 24px -8px;
-  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
+  --text: #8a8a8a;
+  --text-h: #ffffff;
+  --bg: #050505;
+  --surface: #121212;
+  --border: rgba(255, 255, 255, 0.1);
+  --accent: #ffffff;
+  --accent-h: #d9d9d9;
+  --accent-bg: rgba(255, 255, 255, 0.08);
+  --danger: #f87171;
+  --danger-bg: rgba(248, 113, 113, 0.12);
+  --success: #4ade80;
+  --success-bg: rgba(74, 222, 128, 0.12);
+  --warning: #fbbf24;
+  --warning-bg: rgba(251, 191, 36, 0.12);
+  --shadow: rgba(0, 0, 0, 0.4) 0 4px 20px;
+  --sans: 'Outfit', 'Inter', system-ui, sans-serif;
   --mono: ui-monospace, Consolas, monospace;
-  color-scheme: light dark;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --text: #a8a8b3;
-    --text-h: #f3f3f7;
-    --bg: #131318;
-    --surface: #1b1b22;
-    --border: #2c2c36;
-    --accent: #a78bfa;
-    --accent-h: #c4b5fd;
-    --accent-bg: rgba(167, 139, 250, 0.15);
-    --danger: #f87171;
-    --danger-bg: rgba(248, 113, 113, 0.12);
-    --success: #4ade80;
-    --success-bg: rgba(74, 222, 128, 0.12);
-    --warning: #fbbf24;
-    --warning-bg: rgba(251, 191, 36, 0.12);
-    --shadow: rgba(0, 0, 0, 0.3) 0 1px 2px, rgba(0, 0, 0, 0.35) 0 8px 24px -8px;
-  }
+  color-scheme: dark;
 }
 
 .admin-scope * {
@@ -47,9 +27,8 @@
  * Isolation reset: the storefront's own global CSS uses several bare
  * element/class selectors (h1-h6, a, button, ul, .btn-primary) that would
  * otherwise bleed into this section for any property our own rules below
- * don't happen to redeclare (e.g. text-transform: uppercase on headings).
- * These rules use `.admin-scope` + element, which always outranks the
- * storefront's lower-specificity bare selectors.
+ * don't happen to redeclare. These rules use `.admin-scope` + element,
+ * which always outranks the storefront's lower-specificity bare selectors.
  */
 .admin-scope h1,
 .admin-scope h2,
@@ -57,9 +36,9 @@
 .admin-scope h4,
 .admin-scope h5,
 .admin-scope h6 {
-  text-transform: none;
-  letter-spacing: normal;
-  font-family: var(--sans);
+  font-family: 'Outfit', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .admin-scope button,
@@ -91,7 +70,7 @@
 .admin-scope h1, .admin-scope h2, .admin-scope h3 {
   color: var(--text-h);
   margin: 0 0 8px;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .admin-scope button {
@@ -112,29 +91,44 @@
   max-width: 380px;
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 32px;
+  padding: 40px 32px;
   box-shadow: var(--shadow);
 }
 
 .admin-scope .auth-logo {
-  font-size: 20px;
-  font-weight: 700;
-  color: var(--text-h);
-  margin-bottom: 20px;
+  display: flex;
+  align-items: baseline;
+  gap: 2px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  margin-bottom: 24px;
+}
+
+.admin-scope .auth-logo .logo-rare { color: #fff; }
+.admin-scope .auth-logo .logo-fit { color: #888; }
+.admin-scope .auth-logo .logo-admin {
+  margin-left: 8px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text);
 }
 
 .admin-scope .auth-sub {
   color: var(--text);
   margin-bottom: 20px;
   font-size: 14px;
+  text-transform: none;
+  letter-spacing: normal;
 }
 
 .admin-scope .auth-error {
   background: var(--danger-bg);
   color: var(--danger);
   padding: 10px 12px;
-  border-radius: 8px;
   font-size: 13px;
   margin-bottom: 16px;
 }
@@ -153,8 +147,10 @@
   gap: 6px;
   margin-bottom: 16px;
   text-align: left;
-  font-size: 13px;
-  font-weight: 500;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
   color: var(--text-h);
 }
 
@@ -162,8 +158,10 @@
 .admin-scope .field select,
 .admin-scope .field textarea {
   font: inherit;
-  padding: 10px 12px;
-  border-radius: 8px;
+  text-transform: none;
+  letter-spacing: normal;
+  padding: 11px 12px;
+  border-radius: 2px;
   border: 1px solid var(--border);
   background: var(--bg);
   color: var(--text-h);
@@ -184,22 +182,25 @@
 
 /* ---------- Buttons ---------- */
 .admin-scope .btn {
-  border: none;
-  border-radius: 8px;
-  padding: 10px 16px;
+  border: 1px solid transparent;
+  border-radius: 0;
+  padding: 12px 20px;
   font-weight: 600;
-  font-size: 14px;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
   cursor: pointer;
-  transition: opacity 0.15s ease;
+  transition: all 0.3s ease;
 }
 
 .admin-scope .btn:hover {
-  opacity: 0.9;
+  opacity: 0.85;
 }
 
 .admin-scope .btn-primary {
   background: var(--accent);
-  color: #fff;
+  color: var(--bg);
+  border-color: var(--accent);
 }
 
 .admin-scope .btn-block {
@@ -212,14 +213,19 @@
   border: 1px solid var(--border);
 }
 
+.admin-scope .btn-ghost:hover {
+  border-color: var(--accent);
+  opacity: 1;
+}
+
 .admin-scope .btn-danger {
   background: var(--danger-bg);
   color: var(--danger);
 }
 
 .admin-scope .btn-sm {
-  padding: 6px 10px;
-  font-size: 12px;
+  padding: 7px 12px;
+  font-size: 11px;
 }
 
 /* ---------- App shell ---------- */
@@ -229,11 +235,11 @@
 }
 
 .admin-scope .sidebar {
-  width: 220px;
+  width: 230px;
   flex-shrink: 0;
   background: var(--surface);
   border-right: 1px solid var(--border);
-  padding: 20px 12px;
+  padding: 24px 12px;
 }
 
 .admin-scope .sidebar-backdrop {
@@ -241,10 +247,26 @@
 }
 
 .admin-scope .sidebar-logo {
-  font-weight: 700;
-  font-size: 18px;
-  color: var(--text-h);
-  padding: 8px 12px 20px;
+  display: flex;
+  align-items: baseline;
+  gap: 2px;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 800;
+  font-size: 20px;
+  letter-spacing: 2px;
+  padding: 8px 12px 28px;
+}
+
+.admin-scope .sidebar-logo .logo-rare { color: #fff; }
+.admin-scope .sidebar-logo .logo-fit { color: #888; }
+.admin-scope .sidebar-logo .logo-admin {
+  margin-left: 8px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text);
+  align-self: center;
 }
 
 .admin-scope .sidebar-nav {
@@ -257,21 +279,25 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 10px 12px;
-  border-radius: 8px;
+  padding: 11px 12px;
   color: var(--text);
   text-decoration: none;
   font-weight: 500;
-  font-size: 14px;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  border-left: 2px solid transparent;
 }
 
 .admin-scope .sidebar-link:hover {
-  background: var(--bg);
+  background: var(--accent-bg);
+  color: var(--text-h);
 }
 
 .admin-scope .sidebar-link.active {
   background: var(--accent-bg);
-  color: var(--accent);
+  color: var(--text-h);
+  border-left-color: var(--accent);
 }
 
 .admin-scope .sidebar-icon {
@@ -289,7 +315,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 16px 32px;
+  padding: 20px 32px;
   border-bottom: 1px solid var(--border);
   background: var(--surface);
   gap: 12px;
@@ -303,7 +329,7 @@
 }
 
 .admin-scope .navbar-title {
-  font-size: 20px;
+  font-size: 18px;
   margin: 0;
   white-space: nowrap;
   overflow: hidden;
@@ -316,7 +342,7 @@
   justify-content: center;
   width: 36px;
   height: 36px;
-  border-radius: 8px;
+  border-radius: 0;
   border: 1px solid var(--border);
   background: var(--surface);
   color: var(--text-h);
@@ -341,11 +367,15 @@
   font-weight: 600;
   font-size: 13px;
   color: var(--text-h);
+  text-transform: none;
+  letter-spacing: normal;
 }
 
 .admin-scope .navbar-user-role {
-  font-size: 12px;
+  font-size: 11px;
   color: var(--text);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
 }
 
 .admin-scope .avatar {
@@ -353,7 +383,7 @@
   height: 36px;
   border-radius: 50%;
   background: var(--accent);
-  color: #fff;
+  color: var(--bg);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -369,7 +399,7 @@
 }
 
 .admin-scope .app-content {
-  padding: 28px 32px;
+  padding: 32px;
   flex: 1;
 }
 
@@ -378,7 +408,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 20px;
+  margin-bottom: 24px;
 }
 
 .admin-scope .page-subtitle {
@@ -393,7 +423,6 @@
 .admin-scope .card {
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 12px;
   padding: 20px;
   box-shadow: var(--shadow);
 }
@@ -420,7 +449,6 @@
 .admin-scope .stat-card {
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 12px;
   padding: 18px;
   display: flex;
   flex-direction: column;
@@ -429,21 +457,26 @@
 }
 
 .admin-scope .stat-label {
-  font-size: 13px;
+  font-size: 12px;
   color: var(--text);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
 }
 
 .admin-scope .stat-value {
   font-size: 26px;
   font-weight: 700;
   color: var(--text-h);
+  font-family: 'Outfit', sans-serif;
 }
 
 .admin-scope .stat-link {
   font-size: 12px;
-  color: var(--accent);
-  text-decoration: none;
+  color: var(--text-h);
+  text-decoration: underline;
   margin-top: 6px;
+  text-transform: none;
+  letter-spacing: normal;
 }
 
 .admin-scope .two-col {
@@ -489,7 +522,6 @@
 .admin-scope .product-card {
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 12px;
   padding: 16px;
   box-shadow: var(--shadow);
   display: flex;
@@ -505,7 +537,6 @@
   width: 100%;
   height: 140px;
   object-fit: cover;
-  border-radius: 8px;
   background: var(--bg);
 }
 
@@ -519,7 +550,6 @@
 .admin-scope .photo-preview {
   width: 64px;
   height: 64px;
-  border-radius: 8px;
   border: 1px dashed var(--border);
   background: var(--bg);
   display: flex;
@@ -553,22 +583,26 @@
   color: var(--danger);
   font-size: 12px;
   font-weight: 500;
+  text-transform: none;
+  letter-spacing: normal;
   flex-basis: 100%;
 }
 
 .admin-scope .product-body h3 {
-  font-size: 15px;
+  font-size: 14px;
   margin-bottom: 6px;
+  letter-spacing: 0.5px;
 }
 
 .admin-scope .tag {
   display: inline-block;
   background: var(--accent-bg);
-  color: var(--accent);
-  font-size: 11px;
+  color: var(--text-h);
+  font-size: 10px;
   font-weight: 600;
-  padding: 3px 8px;
-  border-radius: 999px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 4px 10px;
   margin-bottom: 8px;
 }
 
@@ -601,7 +635,6 @@
 .admin-scope .blog-card {
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 12px;
   padding: 18px 20px;
   box-shadow: var(--shadow);
   display: flex;
@@ -635,16 +668,17 @@
   border: 1px solid var(--border);
   background: var(--surface);
   color: var(--text);
-  padding: 6px 14px;
-  border-radius: 999px;
-  font-size: 13px;
+  padding: 7px 16px;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
   cursor: pointer;
 }
 
 .admin-scope .chip-active {
   background: var(--accent);
   border-color: var(--accent);
-  color: #fff;
+  color: var(--bg);
 }
 
 .admin-scope .table-card {
@@ -660,16 +694,16 @@
 
 .admin-scope .table th {
   text-align: left;
-  font-size: 12px;
+  font-size: 11px;
   text-transform: uppercase;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.08em;
   color: var(--text);
-  padding: 14px 16px;
+  padding: 16px;
   border-bottom: 1px solid var(--border);
 }
 
 .admin-scope .table td {
-  padding: 14px 16px;
+  padding: 16px;
   border-bottom: 1px solid var(--border);
   font-size: 14px;
   color: var(--text-h);
@@ -678,14 +712,16 @@
 .admin-scope .mono {
   font-family: var(--mono);
   font-size: 13px;
+  color: var(--text);
 }
 
 .admin-scope .status-badge {
   display: inline-block;
   padding: 4px 10px;
-  border-radius: 999px;
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
 }
 
 .admin-scope .status-completed {
@@ -705,7 +741,7 @@
 
 .admin-scope .status-refunded {
   background: var(--accent-bg);
-  color: var(--accent);
+  color: var(--text-h);
 }
 
 /* ---------- Account ---------- */
@@ -737,7 +773,9 @@
 
 .admin-scope .account-details dt {
   color: var(--text);
-  font-size: 13px;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
 }
 
 .admin-scope .account-details dd {
@@ -761,6 +799,12 @@
   border-radius: 50%;
   object-fit: cover;
   flex-shrink: 0;
+  background: var(--accent);
+  color: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
 }
 
 .admin-scope .customer-avatar-fallback {
@@ -792,12 +836,12 @@
     display: block;
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.4);
+    background: rgba(0, 0, 0, 0.6);
     z-index: 30;
   }
 
   .admin-scope .navbar {
-    padding: 12px 16px;
+    padding: 14px 16px;
   }
 
   .admin-scope .app-content {
@@ -830,7 +874,7 @@
   }
 
   .admin-scope .navbar-title {
-    font-size: 17px;
+    font-size: 16px;
   }
 
   .admin-scope .stat-value {

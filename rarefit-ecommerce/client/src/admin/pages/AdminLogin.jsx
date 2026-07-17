@@ -55,7 +55,10 @@ export default function AdminLogin() {
     <div className="admin-scope">
       <div className="auth-screen">
         <form className="auth-card" onSubmit={handleSubmit}>
-          <div className="auth-logo">🛍️ StyleHub Admin</div>
+          <div className="auth-logo">
+            <span className="logo-rare">R</span><span className="logo-fit">F</span>
+            <span className="logo-admin">Admin</span>
+          </div>
           <h1>Welcome back</h1>
           <p className="auth-sub">Sign in to manage products, blogs, and payments.</p>
 

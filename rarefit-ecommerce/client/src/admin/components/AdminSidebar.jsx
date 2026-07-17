@@ -14,7 +14,10 @@ export default function AdminSidebar({ isOpen, onClose }) {
     <>
       {isOpen && <div className="sidebar-backdrop" onClick={onClose} />}
       <aside className={'sidebar' + (isOpen ? ' sidebar-open' : '')}>
-        <div className="sidebar-logo">🛍️ StyleHub</div>
+        <div className="sidebar-logo">
+          <span className="logo-rare">R</span><span className="logo-fit">F</span>
+          <span className="logo-admin">Admin</span>
+        </div>
         <nav className="sidebar-nav">
           {NAV_ITEMS.map((item) => (
             <NavLink
