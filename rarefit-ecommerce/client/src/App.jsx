@@ -1,5 +1,5 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import React, { Suspense, lazy } from 'react';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import PreHeader from './components/PreHeader';
@@ -27,15 +27,18 @@ import Membership from './pages/Membership';
 import ScrollToTop from './components/ScrollToTop';
 import ScrollProgress from './components/ScrollProgress';
 
-function App() {
+// Admin dashboard — lazy-loaded so its code/CSS never ships to storefront visitors
+const AdminApp = lazy(() => import('./admin/AdminApp'));
+
+function PublicSite() {
   return (
-    <Router>
+    <>
       <ScrollProgress />
       <ScrollToTop />
       <div className="page-wrapper">
         <PreHeader />
         <Navbar />
-        
+
         {/* Main content has margin to account for the right nav */}
         <main className="main-content">
           <Routes>
@@ -58,10 +61,33 @@ function App() {
             <Route path="/membership" element={<Membership />} />
           </Routes>
         </main>
-        
+
         <Footer />
         <FloatingActions />
       </div>
+    </>
+  );
+}
+
+function AppShell() {
+  const location = useLocation();
+  const isAdminRoute = location.pathname.startsWith('/dashboard');
+
+  if (isAdminRoute) {
+    return (
+      <Suspense fallback={null}>
+        <AdminApp />
+      </Suspense>
+    );
+  }
+
+  return <PublicSite />;
+}
+
+function App() {
+  return (
+    <Router>
+      <AppShell />
     </Router>
   );
 }

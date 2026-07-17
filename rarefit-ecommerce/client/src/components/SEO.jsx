@@ -1,8 +1,8 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 
-const SEO = ({ title, description, name, type, image, url }) => {
-  const siteUrl = 'https://rarefit-clothing.vercel.app'; // Placeholder, should be updated with actual domain later
+const SEO = ({ title, description, name, type, image, url, schema }) => {
+  const siteUrl = 'https://rarefit-ecommerce.com'; // Updated to actual domain
   const defaultImage = `${siteUrl}/favicon.svg`; // Fallback image
 
   return (
@@ -26,6 +26,13 @@ const SEO = ({ title, description, name, type, image, url }) => {
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={image || defaultImage} />
+
+      {/* Structured Data (JSON-LD) for Google Rich Snippets */}
+      {schema && (
+        <script type="application/ld+json">
+          {JSON.stringify(schema)}
+        </script>
+      )}
     </Helmet>
   );
 };

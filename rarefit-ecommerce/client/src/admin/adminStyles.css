@@ -1,0 +1,839 @@
+:root {
+  --text: #4b4b57;
+  --text-h: #17171f;
+  --bg: #f6f5f9;
+  --surface: #ffffff;
+  --border: #e5e4ec;
+  --accent: #7c3aed;
+  --accent-h: #6d28d9;
+  --accent-bg: rgba(124, 58, 237, 0.1);
+  --danger: #dc2626;
+  --danger-bg: rgba(220, 38, 38, 0.08);
+  --success: #16a34a;
+  --success-bg: rgba(22, 163, 74, 0.1);
+  --warning: #d97706;
+  --warning-bg: rgba(217, 119, 6, 0.1);
+  --shadow: rgba(23, 23, 31, 0.06) 0 1px 2px, rgba(23, 23, 31, 0.06) 0 8px 24px -8px;
+  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
+  --mono: ui-monospace, Consolas, monospace;
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text: #a8a8b3;
+    --text-h: #f3f3f7;
+    --bg: #131318;
+    --surface: #1b1b22;
+    --border: #2c2c36;
+    --accent: #a78bfa;
+    --accent-h: #c4b5fd;
+    --accent-bg: rgba(167, 139, 250, 0.15);
+    --danger: #f87171;
+    --danger-bg: rgba(248, 113, 113, 0.12);
+    --success: #4ade80;
+    --success-bg: rgba(74, 222, 128, 0.12);
+    --warning: #fbbf24;
+    --warning-bg: rgba(251, 191, 36, 0.12);
+    --shadow: rgba(0, 0, 0, 0.3) 0 1px 2px, rgba(0, 0, 0, 0.35) 0 8px 24px -8px;
+  }
+}
+
+.admin-scope * {
+  box-sizing: border-box;
+}
+
+/*
+ * Isolation reset: the storefront's own global CSS uses several bare
+ * element/class selectors (h1-h6, a, button, ul, .btn-primary) that would
+ * otherwise bleed into this section for any property our own rules below
+ * don't happen to redeclare (e.g. text-transform: uppercase on headings).
+ * These rules use `.admin-scope` + element, which always outranks the
+ * storefront's lower-specificity bare selectors.
+ */
+.admin-scope h1,
+.admin-scope h2,
+.admin-scope h3,
+.admin-scope h4,
+.admin-scope h5,
+.admin-scope h6 {
+  text-transform: none;
+  letter-spacing: normal;
+  font-family: var(--sans);
+}
+
+.admin-scope button,
+.admin-scope input,
+.admin-scope select,
+.admin-scope textarea {
+  font-family: var(--sans);
+  text-transform: none;
+  letter-spacing: normal;
+}
+
+.admin-scope a {
+  text-decoration: none;
+}
+
+.admin-scope ul {
+  list-style: none;
+}
+
+.admin-scope {
+  display: block;
+  min-height: 100vh;
+  font: 15px/1.5 var(--sans);
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+.admin-scope h1, .admin-scope h2, .admin-scope h3 {
+  color: var(--text-h);
+  margin: 0 0 8px;
+  font-weight: 600;
+}
+
+.admin-scope button {
+  font: inherit;
+}
+
+/* ---------- Auth screen ---------- */
+.admin-scope .auth-screen {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.admin-scope .auth-card {
+  width: 100%;
+  max-width: 380px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 32px;
+  box-shadow: var(--shadow);
+}
+
+.admin-scope .auth-logo {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-h);
+  margin-bottom: 20px;
+}
+
+.admin-scope .auth-sub {
+  color: var(--text);
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+
+.admin-scope .auth-error {
+  background: var(--danger-bg);
+  color: var(--danger);
+  padding: 10px 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  margin-bottom: 16px;
+}
+
+.admin-scope .auth-hint {
+  font-size: 12px;
+  color: var(--text);
+  text-align: center;
+  margin-top: 16px;
+}
+
+/* ---------- Form fields ---------- */
+.admin-scope .field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 16px;
+  text-align: left;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-h);
+}
+
+.admin-scope .field input,
+.admin-scope .field select,
+.admin-scope .field textarea {
+  font: inherit;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text-h);
+  outline: none;
+}
+
+.admin-scope .field input:focus,
+.admin-scope .field select:focus,
+.admin-scope .field textarea:focus {
+  border-color: var(--accent);
+}
+
+.admin-scope .form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 0 16px;
+}
+
+/* ---------- Buttons ---------- */
+.admin-scope .btn {
+  border: none;
+  border-radius: 8px;
+  padding: 10px 16px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+}
+
+.admin-scope .btn:hover {
+  opacity: 0.9;
+}
+
+.admin-scope .btn-primary {
+  background: var(--accent);
+  color: #fff;
+}
+
+.admin-scope .btn-block {
+  width: 100%;
+}
+
+.admin-scope .btn-ghost {
+  background: transparent;
+  color: var(--text-h);
+  border: 1px solid var(--border);
+}
+
+.admin-scope .btn-danger {
+  background: var(--danger-bg);
+  color: var(--danger);
+}
+
+.admin-scope .btn-sm {
+  padding: 6px 10px;
+  font-size: 12px;
+}
+
+/* ---------- App shell ---------- */
+.admin-scope .app-shell {
+  display: flex;
+  min-height: 100vh;
+}
+
+.admin-scope .sidebar {
+  width: 220px;
+  flex-shrink: 0;
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+  padding: 20px 12px;
+}
+
+.admin-scope .sidebar-backdrop {
+  display: none;
+}
+
+.admin-scope .sidebar-logo {
+  font-weight: 700;
+  font-size: 18px;
+  color: var(--text-h);
+  padding: 8px 12px 20px;
+}
+
+.admin-scope .sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.admin-scope .sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.admin-scope .sidebar-link:hover {
+  background: var(--bg);
+}
+
+.admin-scope .sidebar-link.active {
+  background: var(--accent-bg);
+  color: var(--accent);
+}
+
+.admin-scope .sidebar-icon {
+  font-size: 16px;
+}
+
+.admin-scope .app-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.admin-scope .navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 32px;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+  gap: 12px;
+}
+
+.admin-scope .navbar-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.admin-scope .navbar-title {
+  font-size: 20px;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.admin-scope .menu-btn {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-h);
+  font-size: 16px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.admin-scope .navbar-user {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.admin-scope .navbar-user-info {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.admin-scope .navbar-user-name {
+  font-weight: 600;
+  font-size: 13px;
+  color: var(--text-h);
+}
+
+.admin-scope .navbar-user-role {
+  font-size: 12px;
+  color: var(--text);
+}
+
+.admin-scope .avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 13px;
+}
+
+.admin-scope .avatar-lg {
+  width: 64px;
+  height: 64px;
+  font-size: 22px;
+  margin: 0 auto 12px;
+}
+
+.admin-scope .app-content {
+  padding: 28px 32px;
+  flex: 1;
+}
+
+/* ---------- Page bits ---------- */
+.admin-scope .page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.admin-scope .page-subtitle {
+  color: var(--text);
+  font-size: 14px;
+}
+
+.admin-scope .seed-text {
+  margin-bottom: 12px;
+}
+
+.admin-scope .card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: var(--shadow);
+}
+
+.admin-scope .form-card {
+  margin-bottom: 24px;
+}
+
+.admin-scope .empty-state {
+  color: var(--text);
+  font-size: 14px;
+  padding: 24px 0;
+  text-align: center;
+}
+
+/* ---------- Stat cards ---------- */
+.admin-scope .stat-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.admin-scope .stat-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  box-shadow: var(--shadow);
+}
+
+.admin-scope .stat-label {
+  font-size: 13px;
+  color: var(--text);
+}
+
+.admin-scope .stat-value {
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--text-h);
+}
+
+.admin-scope .stat-link {
+  font-size: 12px;
+  color: var(--accent);
+  text-decoration: none;
+  margin-top: 6px;
+}
+
+.admin-scope .two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+@media (max-width: 800px) {
+  .admin-scope .two-col {
+    grid-template-columns: 1fr;
+  }
+}
+
+.admin-scope .mini-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.admin-scope .mini-list li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 14px;
+}
+
+.admin-scope .muted {
+  color: var(--text);
+  font-size: 13px;
+}
+
+/* ---------- Products ---------- */
+.admin-scope .grid-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.admin-scope .product-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.admin-scope .product-emoji {
+  font-size: 36px;
+}
+
+.admin-scope .product-photo {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 8px;
+  background: var(--bg);
+}
+
+.admin-scope .photo-upload {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.admin-scope .photo-preview {
+  width: 64px;
+  height: 64px;
+  border-radius: 8px;
+  border: 1px dashed var(--border);
+  background: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.admin-scope .photo-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.admin-scope .photo-preview .product-emoji {
+  font-size: 28px;
+}
+
+.admin-scope .photo-upload-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.admin-scope .photo-upload-btn {
+  cursor: pointer;
+}
+
+.admin-scope .field-error {
+  color: var(--danger);
+  font-size: 12px;
+  font-weight: 500;
+  flex-basis: 100%;
+}
+
+.admin-scope .product-body h3 {
+  font-size: 15px;
+  margin-bottom: 6px;
+}
+
+.admin-scope .tag {
+  display: inline-block;
+  background: var(--accent-bg);
+  color: var(--accent);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 999px;
+  margin-bottom: 8px;
+}
+
+.admin-scope .product-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 13px;
+  margin-top: 8px;
+  color: var(--text-h);
+  font-weight: 600;
+}
+
+.admin-scope .stock {
+  color: var(--success);
+  font-weight: 500;
+}
+
+.admin-scope .stock.low {
+  color: var(--warning);
+}
+
+/* ---------- Blogs ---------- */
+.admin-scope .blog-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.admin-scope .blog-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 18px 20px;
+  box-shadow: var(--shadow);
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.admin-scope .blog-excerpt {
+  color: var(--text);
+  font-size: 14px;
+  margin: 4px 0 10px;
+}
+
+.admin-scope .blog-meta {
+  display: flex;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--text);
+}
+
+/* ---------- Payments ---------- */
+.admin-scope .filter-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.admin-scope .chip {
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.admin-scope .chip-active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+.admin-scope .table-card {
+  padding: 0;
+  overflow-x: auto;
+}
+
+.admin-scope .table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 700px;
+}
+
+.admin-scope .table th {
+  text-align: left;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text);
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.admin-scope .table td {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border);
+  font-size: 14px;
+  color: var(--text-h);
+}
+
+.admin-scope .mono {
+  font-family: var(--mono);
+  font-size: 13px;
+}
+
+.admin-scope .status-badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.admin-scope .status-completed {
+  background: var(--success-bg);
+  color: var(--success);
+}
+
+.admin-scope .status-pending {
+  background: var(--warning-bg);
+  color: var(--warning);
+}
+
+.admin-scope .status-failed {
+  background: var(--danger-bg);
+  color: var(--danger);
+}
+
+.admin-scope .status-refunded {
+  background: var(--accent-bg);
+  color: var(--accent);
+}
+
+/* ---------- Account ---------- */
+.admin-scope .account-page {
+  display: flex;
+  justify-content: center;
+}
+
+.admin-scope .account-card {
+  width: 100%;
+  max-width: 420px;
+  text-align: center;
+}
+
+.admin-scope .account-details {
+  text-align: left;
+  margin: 20px 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.admin-scope .account-details > div {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 10px;
+}
+
+.admin-scope .account-details dt {
+  color: var(--text);
+  font-size: 13px;
+}
+
+.admin-scope .account-details dd {
+  margin: 0;
+  font-weight: 600;
+  color: var(--text-h);
+  font-size: 13px;
+}
+
+/* ---------- Customers ---------- */
+.admin-scope .customer-cell {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.admin-scope .customer-avatar,
+.admin-scope .customer-avatar-fallback {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.admin-scope .customer-avatar-fallback {
+  font-size: 12px;
+}
+
+/* ---------- Mobile ---------- */
+@media (max-width: 900px) {
+  .admin-scope .menu-btn {
+    display: flex;
+  }
+
+  .admin-scope .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 40;
+    transform: translateX(-100%);
+    transition: transform 0.2s ease;
+    box-shadow: var(--shadow);
+  }
+
+  .admin-scope .sidebar-open {
+    transform: translateX(0);
+  }
+
+  .admin-scope .sidebar-backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 30;
+  }
+
+  .admin-scope .navbar {
+    padding: 12px 16px;
+  }
+
+  .admin-scope .app-content {
+    padding: 20px 16px;
+  }
+
+  .admin-scope .navbar-user-info {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .admin-scope .page-header {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .admin-scope .blog-card {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .admin-scope .product-card,
+  .admin-scope .blog-card {
+    padding: 14px;
+  }
+
+  .admin-scope .auth-card {
+    padding: 24px;
+  }
+
+  .admin-scope .navbar-title {
+    font-size: 17px;
+  }
+
+  .admin-scope .stat-value {
+    font-size: 22px;
+  }
+}

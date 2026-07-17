@@ -3,22 +3,23 @@ import { useSearchParams } from 'react-router-dom';
 import { Search } from 'lucide-react';
 import ProductCard from '../components/ProductCard';
 import SEO from '../components/SEO';
-import { products as localProducts } from '../data/products';
+import useProductStore from '../store/useProductStore';
 import './Shop.css';
 
 const Shop = () => {
+  const storeProducts = useProductStore((state) => state.products);
+  const loading = useProductStore((state) => state.loading);
   const [allProducts, setAllProducts] = useState([]);
   const [products, setProducts] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
   const [searchQuery, setSearchQuery] = useState('');
   const [maxPrice, setMaxPrice] = useState(10000);
-  
+
   const categoryFilter = searchParams.get('category');
 
   useEffect(() => {
-    setAllProducts(localProducts);
-    setProducts(localProducts);
-  }, []);
+    setAllProducts(storeProducts);
+  }, [storeProducts]);
 
   useEffect(() => {
     let filtered = allProducts;
@@ -39,7 +40,7 @@ const Shop = () => {
     setProducts(filtered);
   }, [categoryFilter, searchQuery, maxPrice, allProducts]);
 
-  const categories = ['All', 'Sunglasses', 'Caps', 'Watches', 'Shirts', 'Pants', 'Shoes'];
+  const categories = ['All', ...new Set(allProducts.map((p) => p.category))];
 
   const handleCategoryChange = (cat) => {
     setSearchParams(cat === 'All' ? {} : { category: cat });
@@ -98,20 +99,26 @@ const Shop = () => {
         </aside>
         
         <main className="shop-main">
-          <div className="product-grid">
-            {products.map(product => (
-              <ProductCard key={product.id} product={product} />
-            ))}
-          </div>
-          {products.length === 0 && (
-            <div className="no-products">
-              <p>No products found matching your filters.</p>
-              <button className="btn-outline mt-4" onClick={() => {
-                setSearchQuery('');
-                setMaxPrice(10000);
-                setSearchParams({});
-              }}>Clear Filters</button>
-            </div>
+          {loading ? (
+            <div className="no-products"><p>Loading products…</p></div>
+          ) : (
+            <>
+              <div className="product-grid">
+                {products.map(product => (
+                  <ProductCard key={product.id} product={product} />
+                ))}
+              </div>
+              {products.length === 0 && (
+                <div className="no-products">
+                  <p>No products found matching your filters.</p>
+                  <button className="btn-outline mt-4" onClick={() => {
+                    setSearchQuery('');
+                    setMaxPrice(10000);
+                    setSearchParams({});
+                  }}>Clear Filters</button>
+                </div>
+              )}
+            </>
           )}
         </main>
       </div>

@@ -21,12 +21,20 @@
   background-color: #f3f4f6;
   border-radius: 8px;
   overflow: hidden;
+  min-height: 320px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .product-detail-image {
   width: 100%;
   height: auto;
   display: block;
+}
+
+.product-detail-image-emoji {
+  font-size: 8rem;
 }
 
 .product-detail-info {

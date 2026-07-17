@@ -6,20 +6,20 @@ import ProductCard from '../components/ProductCard';
 import SEO from '../components/SEO';
 import heroVideo from '../videos/hero-section-video.mp4';
 import ytVideo from '../videos/connect-with-us-youtube1.mp4';
-import { products } from '../data/products';
+import useProductStore from '../store/useProductStore';
 import './Home.css';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const Home = () => {
+  const products = useProductStore((state) => state.products);
   const [featuredProducts, setFeaturedProducts] = useState([]);
   const containerRef = useRef(null);
   const sectionsRef = useRef([]);
 
   useEffect(() => {
-    // Use static products data for frontend deployment
     setFeaturedProducts(products.slice(0, 4));
-  }, []);
+  }, [products]);
 
   useEffect(() => {
     // GSAP ScrollTrigger Stack Effect
@@ -118,12 +118,39 @@ const Home = () => {
     }
   };
 
+  const homeSchema = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://rarefit-ecommerce.com/#organization",
+        "name": "RareFit",
+        "url": "https://rarefit-ecommerce.com",
+        "logo": "https://rarefit-ecommerce.com/favicon.svg",
+        "sameAs": [
+          "https://instagram.com/rarefit_official",
+          "https://youtube.com/rarefit"
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://rarefit-ecommerce.com/#website",
+        "url": "https://rarefit-ecommerce.com",
+        "name": "RareFit | Premium Essentials",
+        "publisher": {
+          "@id": "https://rarefit-ecommerce.com/#organization"
+        }
+      }
+    ]
+  };
+
   return (
     <div className="home-page" ref={containerRef}>
       <SEO
         title="RareFit | Premium Essentials - Home"
         description="Discover the latest premium fashion essentials at RareFit. Shop our exclusive collection today."
         url="https://rarefit-ecommerce.com/"
+        schema={homeSchema}
       />
       {/* 1. Hero Section */}
       <section className="home-section hero" ref={addToRefs}>
@@ -166,19 +193,19 @@ const Home = () => {
             <h2 className="section-title reveal-text fast-reveal">The Collection</h2>
           </div>
           <div className="categories-grid">
-            <Link to="/shop?category=Shirts" className="category-card" style={{ backgroundImage: "url('/shirts.png')" }}>
+            <Link to="/shop?category=T-Shirts" className="category-card" style={{ backgroundImage: "url('/shirts.png')" }}>
               <div className="cat-overlay"></div>
               <h3>Shirts</h3>
             </Link>
-            <Link to="/shop?category=Pants" className="category-card" style={{ backgroundImage: "url('/pants.png')" }}>
+            <Link to="/shop?category=Trousers" className="category-card" style={{ backgroundImage: "url('/pants.png')" }}>
               <div className="cat-overlay"></div>
               <h3>Bottoms</h3>
             </Link>
-            <Link to="/shop?category=Shoes" className="category-card" style={{ backgroundImage: "url('/shoes.png')" }}>
+            <Link to="/shop?category=Footwear" className="category-card" style={{ backgroundImage: "url('/shoes.png')" }}>
               <div className="cat-overlay"></div>
               <h3>Footwear</h3>
             </Link>
-            <Link to="/shop?category=Sunglasses" className="category-card" style={{ backgroundImage: "url('/sunglasses.png')" }}>
+            <Link to="/shop?category=Accessories" className="category-card" style={{ backgroundImage: "url('/sunglasses.png')" }}>
               <div className="cat-overlay"></div>
               <h3>Accessories</h3>
             </Link>

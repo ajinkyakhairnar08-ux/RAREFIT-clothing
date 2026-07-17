@@ -21,11 +21,29 @@ const BlogPost = () => {
     );
   }
 
+  const articleSchema = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": blog.title,
+    "image": [
+      `https://rarefit-ecommerce.com${blog.image}`
+    ],
+    "datePublished": blog.date, // Assuming ISO 8601 or similar parsable date
+    "author": [{
+        "@type": "Person",
+        "name": blog.author
+    }]
+  };
+
   return (
     <article className="blog-post-page">
       <SEO 
         title={`${blog.title} | RAREFIT Editorials`} 
         description={blog.excerpt} 
+        image={`https://rarefit-ecommerce.com${blog.image}`}
+        type="article"
+        url={`https://rarefit-ecommerce.com/blog/${blog.id}`}
+        schema={articleSchema}
       />
 
       <div className="blog-hero">

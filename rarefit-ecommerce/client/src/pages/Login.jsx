@@ -1,8 +1,36 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import useAuthStore from '../store/useAuthStore';
 import './Login.css';
 
 const Login = () => {
+  const navigate = useNavigate();
+  const signInWithGoogle = useAuthStore((state) => state.signInWithGoogle);
+  const loginWithEmail = useAuthStore((state) => state.loginWithEmail);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const [submitting, setSubmitting] = useState(false);
+
+  async function handleGoogleClick() {
+    setError('');
+    setSubmitting(true);
+    const result = await signInWithGoogle();
+    setSubmitting(false);
+    if (result.ok) navigate('/');
+    else setError(result.error);
+  }
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    setError('');
+    setSubmitting(true);
+    const result = await loginWithEmail(email, password);
+    setSubmitting(false);
+    if (result.ok) navigate('/');
+    else setError(result.error);
+  }
+
   return (
     <div className="login-page">
       <div className="login-container glass">
@@ -12,7 +40,9 @@ const Login = () => {
         </div>
 
         <div className="login-methods">
-          <button className="btn-google">
+          {error && <div className="form-error">{error}</div>}
+
+          <button className="btn-google" onClick={handleGoogleClick} disabled={submitting} type="button">
             <svg viewBox="0 0 24 24" width="24" height="24" xmlns="http://www.w3.org/2000/svg">
               <g transform="matrix(1, 0, 0, 1, 27.009001, -39.238998)">
                 <path fill="#4285F4" d="M -3.264 51.509 C -3.264 50.719 -3.334 49.969 -3.454 49.239 L -14.754 49.239 L -14.754 53.749 L -8.284 53.749 C -8.574 55.229 -9.424 56.479 -10.684 57.329 L -10.684 60.329 L -6.824 60.329 C -4.564 58.239 -3.264 55.159 -3.264 51.509 Z"/>
@@ -23,25 +53,43 @@ const Login = () => {
             </svg>
             Sign in with Google
           </button>
-          
+
           <div className="divider">
             <span>OR</span>
           </div>
 
-          <form className="login-form" onSubmit={(e) => e.preventDefault()}>
+          <form className="login-form" onSubmit={handleSubmit}>
             <div className="form-group">
               <label htmlFor="email">Email</label>
-              <input type="email" id="email" required placeholder="name@example.com" />
+              <input
+                type="email"
+                id="email"
+                required
+                placeholder="name@example.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                autoComplete="username"
+              />
             </div>
-            
+
             <div className="form-group">
               <label htmlFor="password">Password</label>
-              <input type="password" id="password" required placeholder="••••••••" />
+              <input
+                type="password"
+                id="password"
+                required
+                placeholder="••••••••"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                autoComplete="current-password"
+              />
             </div>
-            
-            <button type="submit" className="btn-primary" style={{width: '100%', marginTop: '10px'}}>Sign In</button>
+
+            <button type="submit" className="btn-primary" style={{width: '100%', marginTop: '10px'}} disabled={submitting}>
+              {submitting ? 'Signing In…' : 'Sign In'}
+            </button>
           </form>
-          
+
           <div className="login-footer">
             <p>Don't have an account? <Link to="/signup">Create one</Link></p>
           </div>
