@@ -120,3 +120,18 @@
   color: #fff;
   text-decoration: underline;
 }
+
+.link-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  color: #fff;
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: inherit;
+}
+
+.link-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}

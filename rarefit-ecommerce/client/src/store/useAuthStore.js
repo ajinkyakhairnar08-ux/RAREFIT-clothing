@@ -96,6 +96,39 @@ const useAuthStore = create((set) => ({
   async logout() {
     await signOut(auth)
   },
+
+  // Signup email verification: request a 6-digit code be emailed to the
+  // given address (server-side, see api/send-otp.js).
+  async sendSignupOtp(email) {
+    try {
+      const res = await fetch('/api/send-otp', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
+      })
+      const data = await res.json().catch(() => ({}))
+      if (!res.ok) return { ok: false, error: data.error || 'Could not send verification code.' }
+      return { ok: true, devCode: data.devCode }
+    } catch {
+      return { ok: false, error: 'Network error. Please try again.' }
+    }
+  },
+
+  // Confirms the code entered matches what was emailed (see api/verify-otp.js).
+  async verifySignupOtp(email, code) {
+    try {
+      const res = await fetch('/api/verify-otp', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, code }),
+      })
+      const data = await res.json().catch(() => ({}))
+      if (!res.ok) return { ok: false, error: data.error || 'Invalid code.' }
+      return { ok: true }
+    } catch {
+      return { ok: false, error: 'Network error. Please try again.' }
+    }
+  },
 }))
 
 onAuthStateChanged(auth, async (firebaseUser) => {
