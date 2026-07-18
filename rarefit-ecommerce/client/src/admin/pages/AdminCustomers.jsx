@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
 import { formatDate, subscribeToUsers } from '../lib/db'
-import { deleteCustomer, resetCustomerPassword } from '../lib/customerActions'
+import { createCustomer, deleteCustomer, resetCustomerPassword } from '../lib/customerActions'
+
+const EMPTY_ADD_FORM = { name: '', email: '', password: '' }
 
 export default function Customers() {
   const [users, setUsers] = useState([])
@@ -12,6 +14,10 @@ export default function Customers() {
   const [saving, setSaving] = useState(false)
   const [deletingId, setDeletingId] = useState(null)
   const [deleteError, setDeleteError] = useState('')
+  const [showAddForm, setShowAddForm] = useState(false)
+  const [addForm, setAddForm] = useState(EMPTY_ADD_FORM)
+  const [addError, setAddError] = useState('')
+  const [addSaving, setAddSaving] = useState(false)
 
   useEffect(() => {
     const unsubscribe = subscribeToUsers((docs) => {
@@ -54,6 +60,36 @@ export default function Customers() {
     }
   }
 
+  function handleAddChange(e) {
+    const { name, value } = e.target
+    setAddForm((f) => ({ ...f, [name]: value }))
+  }
+
+  function toggleAddForm() {
+    setShowAddForm((s) => !s)
+    setAddForm(EMPTY_ADD_FORM)
+    setAddError('')
+  }
+
+  async function handleAddSubmit(e) {
+    e.preventDefault()
+    if (addForm.password.length < 6) {
+      setAddError('Password must be at least 6 characters.')
+      return
+    }
+    setAddSaving(true)
+    setAddError('')
+    try {
+      await createCustomer(addForm.name.trim(), addForm.email.trim(), addForm.password)
+      setAddForm(EMPTY_ADD_FORM)
+      setShowAddForm(false)
+    } catch (err) {
+      setAddError(err.message)
+    } finally {
+      setAddSaving(false)
+    }
+  }
+
   async function handleDelete(user) {
     if (!window.confirm(`Delete ${user.name || user.email}? This permanently removes their account and cannot be undone.`)) {
       return
@@ -74,9 +110,53 @@ export default function Customers() {
     <div>
       <div className="page-header">
         <p className="page-subtitle">{users.length} registered storefront customers</p>
+        <button className="btn btn-primary" onClick={toggleAddForm}>
+          {showAddForm ? 'Cancel' : '+ Add Customer'}
+        </button>
       </div>
 
       {deleteError && <div className="auth-error">{deleteError}</div>}
+
+      {showAddForm && (
+        <form className="card form-card" onSubmit={handleAddSubmit}>
+          <h3>Add a new customer</h3>
+
+          {addError && <div className="auth-error">{addError}</div>}
+
+          <label className="field">
+            <span>Name</span>
+            <input name="name" value={addForm.name} onChange={handleAddChange} placeholder="Jane Doe" />
+          </label>
+          <label className="field">
+            <span>Email</span>
+            <input
+              type="email"
+              name="email"
+              value={addForm.email}
+              onChange={handleAddChange}
+              placeholder="jane@example.com"
+              autoComplete="off"
+              required
+            />
+          </label>
+          <label className="field">
+            <span>Password</span>
+            <input
+              type="password"
+              name="password"
+              value={addForm.password}
+              onChange={handleAddChange}
+              placeholder="At least 6 characters"
+              autoComplete="new-password"
+              required
+            />
+          </label>
+
+          <button type="submit" className="btn btn-primary" disabled={addSaving}>
+            {addSaving ? 'Creating…' : 'Create Customer'}
+          </button>
+        </form>
+      )}
 
       {resetTarget && (
         <form className="card form-card" onSubmit={handleResetSubmit}>

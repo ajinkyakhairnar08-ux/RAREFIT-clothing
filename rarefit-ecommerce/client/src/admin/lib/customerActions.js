@@ -17,6 +17,10 @@ async function authedPost(url, body) {
   return data
 }
 
+export function createCustomer(name, email, password) {
+  return authedPost('/api/admin-create-customer', { name, email, password })
+}
+
 export function deleteCustomer(uid) {
   return authedPost('/api/admin-delete-customer', { uid })
 }
