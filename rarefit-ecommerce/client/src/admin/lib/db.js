@@ -44,6 +44,10 @@ export async function addProduct(product) {
   await addDoc(collection(db, PRODUCTS), { ...product, createdAt: serverTimestamp() })
 }
 
+export async function updateProduct(id, product) {
+  await updateDoc(doc(db, PRODUCTS, id), { ...product, updatedAt: serverTimestamp() })
+}
+
 export async function deleteProduct(id) {
   await deleteDoc(doc(db, PRODUCTS, id))
 }

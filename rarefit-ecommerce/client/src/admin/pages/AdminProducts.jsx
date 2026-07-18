@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { addProduct, deleteProduct, subscribeToProducts } from '../lib/db'
+import { addProduct, deleteProduct, subscribeToProducts, updateProduct } from '../lib/db'
 import { resizeImageFile } from '../lib/imageResize'
 
 const EMOJI_CHOICES = ['👕', '👖', '🧥', '👗', '👟', '🧢', '🩳', '🧦']
@@ -13,6 +13,7 @@ export default function Products() {
   const [loading, setLoading] = useState(true)
   const [form, setForm] = useState(EMPTY_FORM)
   const [showForm, setShowForm] = useState(false)
+  const [editingId, setEditingId] = useState(null)
   const [imageError, setImageError] = useState('')
   const [saving, setSaving] = useState(false)
 
@@ -54,12 +55,41 @@ export default function Products() {
     setForm((f) => ({ ...f, photo: null }))
   }
 
+  function startAdd() {
+    setEditingId(null)
+    setForm(EMPTY_FORM)
+    setImageError('')
+    setShowForm(true)
+  }
+
+  function startEdit(product) {
+    setEditingId(product.id)
+    setForm({
+      name: product.name || '',
+      category: product.category || CATEGORIES[0],
+      price: String(product.price ?? ''),
+      stock: String(product.stock ?? ''),
+      image: product.image || EMOJI_CHOICES[0],
+      photo: product.photo || null,
+      description: product.description || '',
+    })
+    setImageError('')
+    setShowForm(true)
+  }
+
+  function cancelForm() {
+    setShowForm(false)
+    setEditingId(null)
+    setForm(EMPTY_FORM)
+    setImageError('')
+  }
+
   async function handleSubmit(e) {
     e.preventDefault()
     if (!form.name.trim() || !form.price || !form.stock) return
     setSaving(true)
     try {
-      await addProduct({
+      const payload = {
         name: form.name.trim(),
         category: form.category,
         price: Number(form.price),
@@ -67,16 +97,20 @@ export default function Products() {
         image: form.image,
         photo: form.photo,
         description: form.description.trim(),
-      })
-      setForm(EMPTY_FORM)
-      setImageError('')
-      setShowForm(false)
+      }
+      if (editingId) {
+        await updateProduct(editingId, payload)
+      } else {
+        await addProduct(payload)
+      }
+      cancelForm()
     } finally {
       setSaving(false)
     }
   }
 
   async function handleDelete(id) {
+    if (editingId === id) cancelForm()
     await deleteProduct(id)
   }
 
@@ -86,7 +120,7 @@ export default function Products() {
         <div>
           <p className="page-subtitle">{products.length} products in catalog</p>
         </div>
-        <button className="btn btn-primary" onClick={() => setShowForm((s) => !s)}>
+        <button className="btn btn-primary" onClick={() => (showForm ? cancelForm() : startAdd())}>
           {showForm ? 'Cancel' : '+ Add Product'}
         </button>
       </div>
@@ -157,7 +191,7 @@ export default function Products() {
           </div>
 
           <button type="submit" className="btn btn-primary" disabled={saving}>
-            {saving ? 'Saving…' : 'Save Product'}
+            {saving ? 'Saving…' : editingId ? 'Update Product' : 'Save Product'}
           </button>
         </form>
       )}
@@ -181,7 +215,10 @@ export default function Products() {
                   <span className={p.stock < 20 ? 'stock low' : 'stock'}>{p.stock} in stock</span>
                 </div>
               </div>
-              <button className="btn btn-danger btn-sm" onClick={() => handleDelete(p.id)}>Delete</button>
+              <div className="product-actions">
+                <button className="btn btn-ghost btn-sm" onClick={() => startEdit(p)}>Edit</button>
+                <button className="btn btn-danger btn-sm" onClick={() => handleDelete(p.id)}>Delete</button>
+              </div>
             </div>
           ))}
           {products.length === 0 && <p className="empty-state">No products yet. Add your first one above.</p>}

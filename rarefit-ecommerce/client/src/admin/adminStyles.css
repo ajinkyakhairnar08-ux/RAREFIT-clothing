@@ -541,6 +541,15 @@
   font-size: 36px;
 }
 
+.admin-scope .product-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.admin-scope .product-actions .btn {
+  flex: 1;
+}
+
 .admin-scope .product-photo {
   width: 100%;
   height: 140px;
