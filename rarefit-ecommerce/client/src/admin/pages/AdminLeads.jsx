@@ -30,6 +30,7 @@ export default function Leads() {
   const [loading, setLoading] = useState(true)
   const [starFilter, setStarFilter] = useState('All')
   const [sortBy, setSortBy] = useState('newest')
+  const [search, setSearch] = useState('')
 
   useEffect(() => {
     const unsubscribe = subscribeToLeads((docs) => {
@@ -49,10 +50,14 @@ export default function Leads() {
   }
 
   const visibleLeads = useMemo(() => {
-    const filtered = starFilter === 'Starred' ? leads.filter((l) => l.starred) : leads
+    let filtered = starFilter === 'Starred' ? leads.filter((l) => l.starred) : leads
+    const query = search.trim().toLowerCase()
+    if (query) {
+      filtered = filtered.filter((l) => (l.name || '').toLowerCase().includes(query))
+    }
     const comparator = SORT_COMPARATORS[sortBy]
     return comparator ? [...filtered].sort(comparator) : filtered
-  }, [leads, starFilter, sortBy])
+  }, [leads, starFilter, sortBy, search])
 
   return (
     <div>
@@ -76,6 +81,20 @@ export default function Leads() {
             {SORT_OPTIONS.map((o) => <option key={o.value} value={o.value}>{o.label}</option>)}
           </select>
         </label>
+        <label className="field date-filter-field">
+          <span>Search by name</span>
+          <input
+            type="text"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            placeholder="e.g. Jane Doe"
+          />
+        </label>
+        {search && (
+          <button type="button" className="btn btn-ghost btn-sm" onClick={() => setSearch('')}>
+            Clear search
+          </button>
+        )}
       </div>
 
       <div className="card table-card">
@@ -123,7 +142,11 @@ export default function Leads() {
         )}
         {!loading && visibleLeads.length === 0 && (
           <p className="empty-state">
-            {starFilter === 'Starred' ? 'No starred leads yet.' : 'No leads yet. New contact form submissions will show up here.'}
+            {search
+              ? `No leads found matching "${search}".`
+              : starFilter === 'Starred'
+                ? 'No starred leads yet.'
+                : 'No leads yet. New contact form submissions will show up here.'}
           </p>
         )}
       </div>
