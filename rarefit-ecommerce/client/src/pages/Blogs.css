@@ -71,6 +71,10 @@
   transform: scale(1.05);
 }
 
+.blog-image-placeholder {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02));
+}
+
 .blog-content-wrapper {
   padding: 2rem;
   display: flex;

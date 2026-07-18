@@ -8,6 +8,7 @@ import {
   orderBy,
   query,
   serverTimestamp,
+  updateDoc,
 } from 'firebase/firestore'
 import { db } from '../../firebase'
 
@@ -54,6 +55,10 @@ export function subscribeToBlogs(onChange) {
 
 export async function addBlog(blog) {
   await addDoc(collection(db, BLOGS), { ...blog, createdAt: serverTimestamp() })
+}
+
+export async function updateBlog(id, blog) {
+  await updateDoc(doc(db, BLOGS, id), { ...blog, updatedAt: serverTimestamp() })
 }
 
 export async function deleteBlog(id) {
