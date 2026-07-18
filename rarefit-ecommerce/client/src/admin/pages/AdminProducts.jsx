@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { addProduct, deleteProduct, subscribeToProducts, updateProduct } from '../lib/db'
 import { resizeImageFile } from '../lib/imageResize'
 
@@ -8,6 +8,21 @@ const MAX_IMAGE_BYTES = 8 * 1024 * 1024
 
 const EMPTY_FORM = { name: '', category: CATEGORIES[0], price: '', stock: '', image: EMOJI_CHOICES[0], photo: null, description: '' }
 
+const SORT_OPTIONS = [
+  { value: 'newest', label: 'Newest' },
+  { value: 'price-asc', label: 'Price: Low to High' },
+  { value: 'price-desc', label: 'Price: High to Low' },
+  { value: 'stock-asc', label: 'Stock: Low to High' },
+  { value: 'stock-desc', label: 'Stock: High to Low' },
+]
+
+const SORT_COMPARATORS = {
+  'price-asc': (a, b) => a.price - b.price,
+  'price-desc': (a, b) => b.price - a.price,
+  'stock-asc': (a, b) => a.stock - b.stock,
+  'stock-desc': (a, b) => b.stock - a.stock,
+}
+
 export default function Products() {
   const [products, setProducts] = useState([])
   const [loading, setLoading] = useState(true)
@@ -16,6 +31,7 @@ export default function Products() {
   const [editingId, setEditingId] = useState(null)
   const [imageError, setImageError] = useState('')
   const [saving, setSaving] = useState(false)
+  const [sortBy, setSortBy] = useState('newest')
 
   useEffect(() => {
     const unsubscribe = subscribeToProducts((docs) => {
@@ -114,6 +130,11 @@ export default function Products() {
     await deleteProduct(id)
   }
 
+  const sortedProducts = useMemo(() => {
+    const comparator = SORT_COMPARATORS[sortBy]
+    return comparator ? [...products].sort(comparator) : products
+  }, [products, sortBy])
+
   return (
     <div>
       <div className="page-header">
@@ -196,11 +217,22 @@ export default function Products() {
         </form>
       )}
 
+      {!loading && products.length > 0 && (
+        <div className="filter-row">
+          <label className="field date-filter-field">
+            <span>Sort by</span>
+            <select value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
+              {SORT_OPTIONS.map((o) => <option key={o.value} value={o.value}>{o.label}</option>)}
+            </select>
+          </label>
+        </div>
+      )}
+
       {loading ? (
         <p className="empty-state">Loading products…</p>
       ) : (
         <div className="grid-cards">
-          {products.map((p) => (
+          {sortedProducts.map((p) => (
             <div className="product-card" key={p.id}>
               {p.photo ? (
                 <img className="product-photo" src={p.photo} alt={p.name} />
