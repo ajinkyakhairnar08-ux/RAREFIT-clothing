@@ -1,9 +1,10 @@
 import { cert, getApps, initializeApp } from 'firebase-admin/app'
 import { getFirestore } from 'firebase-admin/firestore'
+import { getAuth } from 'firebase-admin/auth'
 
 let app
 
-export function getAdminDb() {
+function getAdminApp() {
   if (!getApps().length) {
     app = process.env.FIRESTORE_EMULATOR_HOST
       // Local emulator: no real credential needed.
@@ -16,5 +17,13 @@ export function getAdminDb() {
           }),
         })
   }
-  return getFirestore(app)
+  return app
+}
+
+export function getAdminDb() {
+  return getFirestore(getAdminApp())
+}
+
+export function getAdminAuth() {
+  return getAuth(getAdminApp())
 }

@@ -133,6 +133,14 @@
   margin-bottom: 16px;
 }
 
+.admin-scope .auth-success {
+  background: var(--success-bg);
+  color: var(--success);
+  padding: 10px 12px;
+  font-size: 13px;
+  margin-bottom: 16px;
+}
+
 .admin-scope .auth-hint {
   font-size: 12px;
   color: var(--text);
@@ -829,6 +837,17 @@
 
 .admin-scope .customer-avatar-fallback {
   font-size: 12px;
+}
+
+.admin-scope .customer-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.admin-scope .reset-actions {
+  display: flex;
+  gap: 10px;
 }
 
 /* ---------- Mobile ---------- */
