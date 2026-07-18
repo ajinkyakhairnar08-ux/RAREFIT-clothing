@@ -7,6 +7,7 @@ import AdminProducts from './pages/AdminProducts'
 import AdminBlogs from './pages/AdminBlogs'
 import AdminPayments from './pages/AdminPayments'
 import AdminCustomers from './pages/AdminCustomers'
+import AdminLeads from './pages/AdminLeads'
 import AdminAccount from './pages/AdminAccount'
 
 export default function AdminApp() {
@@ -25,6 +26,7 @@ export default function AdminApp() {
         <Route path="/dashboard/blogs" element={<AdminBlogs />} />
         <Route path="/dashboard/payments" element={<AdminPayments />} />
         <Route path="/dashboard/customers" element={<AdminCustomers />} />
+        <Route path="/dashboard/leads" element={<AdminLeads />} />
         <Route path="/dashboard/account" element={<AdminAccount />} />
       </Route>
     </Routes>

@@ -10,6 +10,7 @@ const TITLES = {
   '/dashboard/blogs': 'Blogs',
   '/dashboard/payments': 'Payments History',
   '/dashboard/customers': 'Customers',
+  '/dashboard/leads': 'Leads',
   '/dashboard/account': 'My Account',
 }
 

@@ -16,6 +16,7 @@ const PRODUCTS = 'products'
 const BLOGS = 'blogs'
 const PAYMENTS = 'payments'
 const USERS = 'users'
+const LEADS = 'leads'
 
 function toDoc(snap) {
   return { id: snap.id, ...snap.data() }
@@ -89,6 +90,21 @@ export async function deletePayment(id) {
 // reads/monitors this collection.
 export function subscribeToUsers(onChange) {
   return subscribe(USERS, onChange)
+}
+
+// ---------- Leads ----------
+// Written by the public Contact form via api/submit-lead.js. The dashboard
+// reads/monitors this collection, and can star or delete entries.
+export function subscribeToLeads(onChange) {
+  return subscribe(LEADS, onChange)
+}
+
+export async function toggleLeadStar(id, starred) {
+  await updateDoc(doc(db, LEADS, id), { starred })
+}
+
+export async function deleteLead(id) {
+  await deleteDoc(doc(db, LEADS, id))
 }
 
 // ---------- One-time sample data seed ----------

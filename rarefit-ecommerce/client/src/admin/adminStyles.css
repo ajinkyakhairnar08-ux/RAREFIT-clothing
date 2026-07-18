@@ -752,6 +752,26 @@
   color: var(--text);
 }
 
+.admin-scope .star-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  line-height: 1;
+  color: var(--text);
+  padding: 0;
+}
+
+.admin-scope .star-btn-active {
+  color: var(--warning);
+}
+
+.admin-scope .lead-message {
+  max-width: 280px;
+  white-space: normal;
+  color: var(--text);
+}
+
 .admin-scope .status-badge {
   display: inline-block;
   padding: 4px 10px;

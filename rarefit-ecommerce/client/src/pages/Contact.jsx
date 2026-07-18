@@ -37,6 +37,19 @@ const Contact = () => {
 
       if (response.ok) {
         setIsSuccess(true);
+        // Best-effort: also save the lead to the dashboard. Never block the
+        // (working) email flow above if this fails.
+        fetch('/api/submit-lead', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name: data.name,
+            email: data.email,
+            phone: data.phone,
+            subject: data.inquiry_type,
+            message: data.message,
+          }),
+        }).catch(() => {});
       } else {
         alert("Something went wrong. Please try again.");
       }
