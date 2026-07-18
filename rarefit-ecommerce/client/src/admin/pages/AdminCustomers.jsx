@@ -11,6 +11,7 @@ export default function Customers() {
   const [resetSuccess, setResetSuccess] = useState('')
   const [saving, setSaving] = useState(false)
   const [deletingId, setDeletingId] = useState(null)
+  const [deleteError, setDeleteError] = useState('')
 
   useEffect(() => {
     const unsubscribe = subscribeToUsers((docs) => {
@@ -58,9 +59,12 @@ export default function Customers() {
       return
     }
     setDeletingId(user.id)
+    setDeleteError('')
     try {
       await deleteCustomer(user.id)
       if (resetTarget?.id === user.id) closeReset()
+    } catch (err) {
+      setDeleteError(`Could not delete ${user.name || user.email}: ${err.message}`)
     } finally {
       setDeletingId(null)
     }
@@ -71,6 +75,8 @@ export default function Customers() {
       <div className="page-header">
         <p className="page-subtitle">{users.length} registered storefront customers</p>
       </div>
+
+      {deleteError && <div className="auth-error">{deleteError}</div>}
 
       {resetTarget && (
         <form className="card form-card" onSubmit={handleResetSubmit}>
