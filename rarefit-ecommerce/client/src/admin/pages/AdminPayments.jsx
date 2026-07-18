@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
-import { subscribeToPayments } from '../lib/db'
+import { deletePayment, subscribeToPayments } from '../lib/db'
 
 const STATUS_FILTERS = ['All', 'Completed', 'Pending', 'Failed', 'Refunded']
 
@@ -25,6 +25,10 @@ export default function Payments() {
     () => payments.filter((p) => p.status === 'Completed').reduce((sum, p) => sum + p.amount, 0),
     [payments]
   )
+
+  async function handleDelete(id) {
+    await deletePayment(id)
+  }
 
   return (
     <div>
@@ -69,6 +73,7 @@ export default function Payments() {
                 <th>Method</th>
                 <th>Date</th>
                 <th>Status</th>
+                <th></th>
               </tr>
             </thead>
             <tbody>
@@ -81,6 +86,9 @@ export default function Payments() {
                   <td>{p.method}</td>
                   <td>{p.date}</td>
                   <td><span className={'status-badge status-' + p.status.toLowerCase()}>{p.status}</span></td>
+                  <td>
+                    <button className="btn btn-danger btn-sm" onClick={() => handleDelete(p.id)}>Delete</button>
+                  </td>
                 </tr>
               ))}
             </tbody>

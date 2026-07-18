@@ -76,6 +76,10 @@ export async function addPayment(payment) {
   await addDoc(collection(db, PAYMENTS), { ...payment, createdAt: serverTimestamp() })
 }
 
+export async function deletePayment(id) {
+  await deleteDoc(doc(db, PAYMENTS, id))
+}
+
 // ---------- Storefront customers ----------
 // Written by the storefront itself on register/login. The dashboard only
 // reads/monitors this collection.
